@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx, epstopdf}
+\usepackage{color}
+
+\oddsidemargin -.2in
+%\evensidemargin -1in
+\textwidth 7in
+\topmargin -0.5in
+\textheight 8.5in
+
+\title{FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies\\\vspace{5mm}Assignment 1\\\vspace{10mm}Due: Jan 27, 2014}
+\date{}
+\begin{document}
+\maketitle
+
+Instructions:
+\begin{itemize}
+\itemsep 3mm
+\item This assignment can be done individually or in a team of two.
+\item Please attach the relevant R code and provide any outputs and/or plots to support your answers, giving clear narratives of how those outputs lead you to your stated conclusions.
+\item Turn in your submissions in class
+\end{itemize}
+
+\vspace{5mm}
+Data files:
+\begin{itemize}
+\item The file {\tt d\_15stocks.csv} and {\tt m\_15stocks.csv} contain daily and monthly stock returns data for 15 stocks from Jan 11, 2000 to Mar 31, 2013.
+\item The file {\tt d\_indexes.csv} and {\tt m\_indexes.csv} contain daily and monthly returns data for the volume-weighted and equal-weighted S\&P500 market indices (VWRETD and EWRETD, respectively) from Jan 11, 2000 to Mar 31, 2013.
+%\item The file {\tt 224200801.csv} contains the daily value of the S\&P500 index from Jan 11, 2000 to Dec 30, 2005. You may need to extract a subset of this data to match the set of dates available in {\tt d\_logret\_16stocks.txt}
+%\item To calculate the value-weighted index, you may need the prices of the stocks. Please obtain the adjusted prices of the stocks on Jan 10, 2000 from Yahoo Finance and then calculate the stock prices on subsequent days using the available stock returns. The 16 stock tickers in {\tt d\_logret\_16stocks.txt} are AIG, AXP, T, BA, DIS, DD, GM, HD, HPQ, IBM, JPM, MCD, MRK, MSFT, VZ, WMT. For example, you can obtain the AIG stock price on Jan 10, 2000 here: 
+%
+%{\tt http://finance.yahoo.com/q/hp?s=AIG\&a=00\&b=10\&c=2000\&d=00\&e=10\&f=2000\&g=d}
+
+\item The file {\tt d\_aapl.txt} contains the daily price of AAPL stock from Jan 3, 2003 to Jun 28, 2013.
+
+%\item The file {\tt FF\_Data\_ForGRStest.csv} contains historical monthly returns data for portfolios based on Fama-French factors.
+\end{itemize}
+\pagebreak
+
+\begin{enumerate}
+\item Using daily and monthly returns data for 15 individual stocks from {\tt d\_15stocks.csv} and {\tt m\_15stocks.csv}, and the equal-weighted and value-weighted CRSP market indexes (EWRETD and VWRETD, respectively) from {\tt d\_indexes.csv} and {\tt m\_indexes.csv}, perform the following statistical analyses using R. For the subsample analyses, split the available observations into equal-sized subsamples.
+\begin{enumerate}
+\item Compute the sample mean $\hat\mu$, standard deviation $\hat{\sigma}$, and first-order autocorrelation coefficient $\hat{\rho}(1)$ for daily simple returns over the entire sample period for the 15 stocks and two indexes. Split the sample into 4 equal subperiods and compute the same statistics in each subperiod -- are they stable over time?
+\item Plot histograms of daily simple returns for VWRETD and EWRETD over the entire sample period. Plot another histogram of the normal distribution with mean and variance equal to the sample mean and variance of the returns plotted in the first histograms. Do daily simple returns look approximately normal? Which looks closer to normal: VWRETD or EWRETD?
+\item Using daily simple returns for the sample period, construct 99\% confidence intervals for $\hat{\mu}$ for VWRETD and EWRETD, and the 15 individual stock return series. Divide the sample into 4 equal subperiods and construct 99\% confidence intervals in each of the four subperiods for the 17 series -- do they shift a great deal?
+\item Compute the skewness, kurtosis, and studentized range of daily simple returns of VWRETD, EWRETD, and the 15 individual stocks over the entire sample period, and in each of the 4 equal subperiods. Which of the skewness, kurtosis, and studentized range estimates are statistically different from the skewness, kurtosis, and studentized range of a normal random variable at the 5\% level? For these 17 series, perform the same calculations using monthly data. What do you conclude about the normality of these return series, and why?
+\end{enumerate}
+
+\item Consider daily price of AAPL stock from {\tt d\_aapl.csv}. The data are obtained from Yahoo Finance and have 7 columns (namely, Date, Open, High, Low, Close, Volume, Adj Close). We focus on the adjusted closing price in the last column. (You can use the R function {\tt rev} to reverse the time series.)
+\begin{enumerate}
+\item Compute the daily log returns of AAPL stock. Is there any serial correlation in the daily log returns? To answer this question, perform the test $H_0:\rho_1=\cdots=\rho_{10}=0$ versus $H_1:\rho_i\ne 0$ for some $1\le i\le 10$. What is your conclusion?
+\item Use the function $\tt ar$ with the maximum likelihood (MLE) method to select an AR model for the log return series. What is the specified order? Perform model fitting and write down the fitted model. Are all AR coefficients significant at the 5\% level? Why?
+\item Focus on the AR model specified in (b). Simplify the APR model by fixing the insignificant coefficients to 0. Write down the final model with all AR coefficients significant at the 5\% level.
+\item Consider the log price series of AAPL stock. Is the log price series unit-root nonstationary? Perform a unit-root test to answer the question and present your conclusion. [Hint: You may use the order specified in (b) in the test.]
+\end{enumerate}
+
+\item Consider daily price of AAPL stock from {\tt d\_aapl.csv}. Compute the daily log returns of the stock. Use an ARMA model to remove any serial correlations in the log returns, if necessary.
+\begin{enumerate}
+\item Is there any ARCH effect in the daily log returns of AAPL stock? Justify your answer.
+\item Fit a GARCH(1,1) model for the log return of AAPL stock using Gaussian distribution for the innovations. Perform model checking, and write down the fitted model.
+\item Fit the GARCH(1,1) model again using the Student-$t$ distribution for the innovations. Write down the fitted model.
+\item Fit an IGARCH(1,1) model with Gaussian innovations to the AAPL stock returns. Write down the fitted model. [Note: This is the model used in RiskMetrics to compute VaR.]
+\item Among the three fitted volatility models, choose the one that appears to be the best. Why?
+\end{enumerate}
+
+%\item The file {\tt FF\_Data\_ForGRStest.csv} contains historical monthly returns for one set of 6 portfolios and another set of 25 portfolios, formed based on the size and book-to-market ratio (BM). The data is obtained from French's data library. The portfolios are formed as the intersection of size (or market equity, ME) based portfolios and book equity to market equity ratio (BE/ME) based portfolios ($2\times 3$ forming the first set of 6 portfolios and $5\times 5$ forming the second set of 25 portfolios). These portfolios are discussed in their 1993 paper by Fama and French.
+%
+%In this exercise we will only work with the first set of 6 portfolios, which are contained in the columns named beginning with ``PF6'', with the rest of the column name following French's naming convention about the size and BM of the corresponding portfolios -- SML contains small size + low BM, SM2 contains small size + medium BM, SMH contains small size + high BM, BIGL contains big size + low BM, etc.
+%
+%Finally, the last 4 columns of the data set contain the Fama-French factors themselves along with the risk-free rate: MktMinusRF contains the excess return of the market over the risk-free rate, SMB contains the small-minus-big size factor, HML contains the high-minus-low BM factor and RF contains the risk-free rate.
+
+%\begin{enumerate}
+%\item Using the entire sample, regress the excess returns (over the risk-free rate) of each of the 6 portfolios on the excess market return, and perform tests with a size of 5\% that the intercept is 0. Report the point estimates, $t$-statistics, and whether or not you reject the CAPM. Perform regression diagnostics to check your specification.
+%\item For each of the 6 portfolios, perform the same test over each of the two equi-partitioned subsamples and report the point estimates, $t$-statistics, and whether or not you reject the CAPM in each subperiod. Also include the same diagnostics as above.
+%\item Repeat (a) and (b) by regressing the excess portfolio returns on all three Fama-French factors (excess market return, SMB factor and HML factor).
+%\item Jointly test that the intercepts for all 6 portfolios are 0 using the $F$-test statistic or Hotelling's $T^2$ for the whole sample and for each subsample when regressing on all three Fama-French factors.
+%\item Are the 6 portfolio excess returns (over the risk-free rate) series cointegrated? Use Johansen's test to identify the number of cointegrating relationships.
+%\end{enumerate}
+\end{enumerate}
+\end{document}

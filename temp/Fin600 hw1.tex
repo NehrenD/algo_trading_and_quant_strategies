@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Fin600: Algorithmic Trading and Quantitative Strategies (Spring 2018)\\
+Assignment \#1}
+
+\date{Due: Monday, Feb $12^{th}$, 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+
+
+\maketitle
+
+~\\
+(a) This is a team assignment; Submit only one copy per team.\\
+~\\
+(b) All work must be neatly done; Show only the output necessary for directly answering a question. Include the "R-code" at the end.
+
+
+\newpage
+
+\begin{enumerate}
+    \item {Consider the exchange rate daily data from December 4, 2006 to November 5,
+2010 (Rupee versus Dollar, Pound and Euro), Rates.csv.\\
+(a) Compute the sample average, standard deviation and the first or derautocorre lation of daily returns over the entire sample period. Test if the mean and the first order autocorrelation are significantly different from zero using the tests proposed in Chapter 2.\\
+~\\
+(b) Plot histograms of the returns over the entire sample period; Does the distri- bution look normal? Test it through Jarque-Bera test in 2.44.\\
+~\\
+(c) Aggregate the data at the weekly level; do (a) and (b) on the aggregated data. Compare the result with the result for the daily level.
+
+\item{For the returns of all three time series in problem 1, construct}
+(a) ARMA models for the returns; identify the model structure via ACF and PACF.\\
+~\\
+(b) GARCH models for the squared returns; compare the model coefficients for the three series. Comment on the difference if any.\\
+~\\
+(c) Is there a co-movement among the three exchange-rate series? To make the plots on a comparable scale, convert the starting points of the series unity. Does the co-movement vary over different time regimes? (Back up your claim with solid analysis.) Identify the transition states and speculate how you can exploit this for trading decisions.}
+
+\item{Consider daily price of Apple stock from Jan 2, 2015 - Jan2, 2018. The data can be obtained from Yahoo Finance and have 7 columns (namely, Date, Open, High, Low, Close, Volume, Adj Close). We focus on the adjusted closing price in the last column.} \\
+(a) Compute the daily log returns. Is there any serial correlation in the daily log returns? Use the test for white noise as outlined in the text.\\
+~\\
+(b) Consider the pivot quantities on the average of high and low price and the average of high, low and close prices. Compute the returns based on the pivot log prices and test for serial correlation. Compare this result with the finding in (a).\\
+~\\
+(c) Consider the log price series of AAPL stock. Is the log price series unit-root nonstationary? Perform a unit-root test.
+
+\item{Consider daily price of Apple stock again.}
+~\\
+(a) Computevariousmeasuresofvariancecomputedfromtheentriesoftheprice bars. Comment on their correlation with log volume.\\
+~\\
+(b) Use the ARIMA modeling to come up with a parsimonions model for log volume. Comment on the model accuracy by setting aside a validation data set.
+
+\end{enumerate}
+\end{document}

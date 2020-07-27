@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx, epstopdf}
+\usepackage{color}
+
+\oddsidemargin -.2in
+%\evensidemargin -1in
+\textwidth 7in
+\topmargin -0.5in
+\textheight 8.5in
+
+\title{Fin 600: Algorithmic Trading and Quantitative Strategies\\\vspace{5mm}Assignment 2\\\vspace{10mm}Due: Monday, Feb 23, 2015}
+\date{}
+\begin{document}
+\maketitle
+
+Instructions:
+\begin{itemize}
+\itemsep 3mm
+\item This assignment can be done individually or in a team of two.
+\item Please attach the relevant R code and provide any outputs and/or plots to support your answers, giving clear narratives of how those outputs lead you to your stated conclusions.
+\item Turn in your submissions in class or on BB( Instructions will follow)
+\end{itemize}
+
+\vspace{5mm}
+Data files:
+\begin{itemize}
+\item The file {\tt FF\_Data\_ForGRStest.csv} contains historical monthly returns data for portfolios based on Fama-French factors.
+\item Rates.xls contains the rupee exchange data.
+\end{itemize}
+\pagebreak
+
+\begin{enumerate}
+\item The file {\tt FF\_Data\_ForGRStest.csv} contains historical monthly returns for one set of 6 portfolios and another set of 25 portfolios, formed based on the size and book-to-market ratio (BM). The data is obtained from French's data library. The portfolios are formed as the intersection of size (or market equity, ME) based portfolios and book equity to market equity ratio (BE/ME) based portfolios ($2\times 3$ forming the first set of 6 portfolios and $5\times 5$ forming the second set of 25 portfolios). These portfolios are discussed in their 1993 paper by Fama and French.
+
+In this exercise we will only work with the first set of 6 portfolios, which are contained in the columns named beginning with ``PF6'', with the rest of the column name following French's naming convention about the size and BM of the corresponding portfolios -- SML contains small size + low BM, SM2 contains small size + medium BM, SMH contains small size + high BM, BIGL contains big size + low BM, etc.
+
+Finally, the last 4 columns of the data set contain the Fama-French factors themselves along with the risk-free rate: MktMinusRF contains the excess return of the market over the risk-free rate, SMB contains the small-minus-big size factor, HML contains the high-minus-low BM factor and RF contains the risk-free rate.
+
+\begin{enumerate}
+\item Using the entire sample, regress the excess returns (over the risk-free rate) of each of the 6 portfolios on the excess market return, and perform tests with a size of 5\% that the intercept is 0. Report the point estimates, $t$-statistics, and whether or not you reject the CAPM. Perform regression diagnostics to check your specification.
+\item For each of the 6 portfolios, perform the same test over each of the two equi-partitioned subsamples and report the point estimates, $t$-statistics, and whether or not you reject the CAPM in each subperiod. Also include the same diagnostics as above.
+\item Repeat (a) and (b) by regressing the excess portfolio returns on all three Fama-French factors (excess market return, SMB factor and HML factor).
+\item Jointly test that the intercepts for all 6 portfolios are 0 using the $F$-test statistic or Hotelling's $T^2$ for the whole sample and for each subsample when regressing on all three Fama-French factors.
+\item Are the 6 portfolio excess returns (over the risk-free rate) series cointegrated? Use Johansen's test to identify the number of cointegrating relationships.
+\end{enumerate}
+\item{\it Technical Rules}
+
+Consider the data on exchange rates between the Indian Rupee and the US Dollar, British Pound and Euro. In order to compare the performance of a strategy, appropriately normalize the entry point exchange rate: invest equal amounts of capital (counted in INR, which we will call the ``base currency'') in each trade. Total portfolio return on each day should be computed as a weighted sum of returns from each active trade (weighted by the current value of each trade). Evaluate the signals discussed in (a) and (b) below using the Sharpe ratios and PNL with and without including transaction costs of $15$ basis points. Assume a risk free rate of $3\%$. (1 basis point = $10^{-4}$; so each dollar traded costs $0.0015$ in transaction costs)
+\begin{enumerate}
+\item{\it Moving average trading rules}: Trading signals are generated from the relative levels of the price series and a moving average of past prices.
+\begin{itemize}
+\item  Rule 1: Let $ma_t = \frac{1}{L}\sum_{i=0}^{L-1}p_{t-i}$; use the strategy to sell if $p_t > ma_t$ and to buy if $p_t<ma_t$. Evaluate this strategy. What is the optimal ``$L$''?
+\item Rule 2 (Bollinger band): Define the following quantities
+\begin{align*}
+&\bar p_t^{(L)} = \frac{1}{L}\sum_{i=0}^{L-1}p_{t-i}\\
+&\hat p_t^{(L)} = \frac{1}{\sum_{i=1}^{L}i}\sum_{i=0}^{L-1}(L-i)p_{t-i}\\
+&\sigma_t^{(L)} = \left\{\frac{1}{L-1}\sum_{i=0}^{L-1}\left(p_{t-i}-\bar p_t^{(L)}\right)^2\right\}^{1/2}
+\end{align*}
+and define the bands $p_t^+ = \hat p_t^{(L)} + 2\sigma_t^{(L)}$ and $p_t^- = \hat p_t^{(L)} - 2\sigma_t^{(L)}$. If $p_t>p_t^+$, sell and if $p_t<p_t^-$, buy. Evaluate this trading rule. What is the optimal ``$L$''?
+\item Rule 3 (Resistance-Support): Buy if $p_t > \max_{\substack{0\le i< L}}p_{t-i}$ and sell if $p_t < \min_{\substack{0\le i< L}}p_{t-i}$. Evaluate this rule. What is the optimal ``$L$''?
+\item Rule 4 (Momentum): Compute a short-term moving average over the last $m$ prices, $MA^{(S)}_t(m)$ and a long-term average over the last $n$ prices, $MA^{(L)}_t(n)$ with $m<n$. If $MA^{(S)}_t(m)$ crosses $MA^{(L)}_t(n)$ from below, sell and if it crosses $MA^{(L)}_t(n)$ from above, buy. Evaluate this strategy. What are the optimal values of $m$ and $n$ ?
+\end{itemize}
+\item{\it Oscillator Rule}: Define
+$$RSI_t = 100\left(\frac{U_t}{U_t+D_t}\right)$$
+where $U_t$ is the cumulative up movement and $D_t$ is the cumulative down movement over the last $L$ periods, mathematically defined as
+\begin{align*}
+&U_t = \sum_{i=0}^{L-1}I(S_{t-i} - S_{t-i-1}>0)(S_{t-i}-S_{t-i-1})\\
+&D_t = \sum_{i=0}^{L-1}I(S_{t-i} - S_{t-i-1}<0)(S_{t-i}-S_{t-i-1})
+\end{align*}
+If $RSI_t<30$, buy and if $RSI_t>70$, sell. Evaluate this trading strategy. What is the optimal ``$L$''?
+
+\end{enumerate}
+\item{\ Summary}: Compare the entry and exit dates of the strategies discussed above and comment if you see any commonalities.
+ 
+
+\item {\it Pairs Trading: Distance Method}
+
+We want to develop a pairs trading strategy and check if it does any better than  the strategies in Problem 1. At the last trading day of the month, look back 3 months and identify if any pairs are worth trading. Use the distance measures, thresholds, and portfolio return accounting as given in Engleberg, et al. (2009, p2-4). Summarize the results using the same format as in Problem 2.
+
+%\item {\it Pairs Trading: Cointegration Method}
+%
+%In the cointegration method, we can consider the possibility of trading more than 2 assets. Check using a moving window of 3 months which series are cointegrated. Develop appropriate trading strategies to trade portfolios formed from the cointegrating vectors and compare with the pairs trading strategies from Problem 2. (You may use and extend the ideas from Problem 2 to concretely define the trading indicators and thresholds for entry and exit.) Summarize the performance results as in Problem 1.
+%
+%\item {\it Pairs Trading: APT method}
+%
+%Consider the data with the S\&P500 market index returns and assume that the risk free rate is 3\%. Regress each currency's excess return (over the risk free rate) on the excess market return over a moving window of 3 months. Find pairs based on the similarity of the regression coefficients.
+%\begin{enumerate}
+%\item Compare the pairs that result from the APT method with those obtained in Problem 2.
+%\item After finding the pairs, use the same rules as in Problem 2 to decide when to enter and exit specific trades.
+%\end{enumerate}
+%Summarize the performance results as in Problem 1.
+%
+%\item {\it Summing up}
+%
+%Provide a summary table with the main findings and drawbacks of all the methods that are explored in this assignment. In particular, comment on the performance of single-asset strategies versus multi-asset strategies. Also comment on whether the market factor adds any value.
+\end{enumerate}
+\end{document}

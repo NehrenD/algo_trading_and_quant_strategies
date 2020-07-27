@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx, epstopdf}
+\usepackage{color}
+
+\oddsidemargin -.2in
+%\evensidemargin -1in
+\textwidth 7in
+\topmargin -0.5in
+\textheight 8.5in
+
+\title{FIN 600: Algorithmic Trading and Quantitative Strategies\\ Spring 2017 \\ \vspace{5mm}Assignment 2\\\vspace{10mm}Due: March 08, 2017}
+\date{}
+\begin{document}
+\maketitle
+
+Instructions:
+\begin{itemize}
+\itemsep 3mm
+\item This assignment can be done individually or in a team of two.
+\item You may want to use the Blackthornes's Toolbox to do these problems. For questions on the toolbox,you may contact me and I will connect you with someone at Blachthorne who can help you.
+\item All the performance ratios are listed on p136 of the text; In problem 1, convert the basis points to actual dollar transaction costs while using the toolbox; You can sweep various optimal values for two periods simultaneously in the toolbox; Problem 2 is not directly supported by the toolbox, but can be done using the regression and time series components of the toolbox.
+\end{itemize}
+
+\vspace{5mm}
+Data file:
+\begin{itemize}
+
+\item {\tt{Bankdata.csv}} contains data for tickers SPY, WFC and JPM.
+\end{itemize}
+\pagebreak
+
+\begin{enumerate}
+
+\item{\it Technical Rules}
+
+Consider the daily prices for three tickers, WFC (Wells - Fargo), JPM (JP Morgan Chase) and SPY (S\&P 500 ETF Trust). In order to compare the performance of a strategy, appropriately normalize the entry point: invest equal amounts of capital in each stock. Total portfolio return on each day should be computed as a weighted sum of returns from each active trade (weighted by the current value of each trade). Evaluate the signals discussed in (a) and (b) below using the Sharpe, Treynor, Sortino, Calmar and Information ratios and PNL with and without including transaction costs of $10$ basis points. Assume a risk free rate of $3\%$. (1 basis point = $10^{-4}$; so each dollar traded costs $0.0010$ in transaction costs)
+
+
+
+
+\begin{enumerate}
+\item{\it Moving average trading rules}: Trading signals are generated from the relative levels of the price series and a moving average of past prices.
+\begin{itemize}
+\item  Rule 1: Let $ma_t = \frac{1}{L}\sum_{i=0}^{L-1}p_{t-i}$; use the strategy to sell if $p_t > \omega*ma_t$ and to buy if $p_t<\frac{1}{\omega}*ma_t$. Evaluate this strategy. What are the optimal values for ``$\omega$'' and ``$L$''?
+\item Rule 2 (Momentum): Compute a short-term moving average over the last $m$ prices, $ma^{(S)}_t(m)$ and a long-term average over the last $n$ prices, $ma^{(L)}_t(n)$ with $m<n$. If $ma^{(S)}_t(m)$ crosses $ma^{(L)}_t(n)$ from below, sell and if it crosses $ma^{(L)}_t(n)$ from above, buy. Evaluate this strategy. What are the optimal values of $m$ and $n$ ?
+\item Rule 3 (Bollinger band): Define the following quantities
+\begin{align*}
+&\bar p_t^{(L)} = \frac{1}{L}\sum_{i=0}^{L-1}p_{t-i}\\
+&\hat p_t^{(L)} = \frac{1}{\sum_{i=1}^{L}i}\sum_{i=0}^{L-1}(L-i)p_{t-i}\\
+&\sigma_t^{(L)} = \left\{\frac{1}{L-1}\sum_{i=0}^{L-1}\left(p_{t-i}-\bar p_t^{(L)}\right)^2\right\}^{1/2}
+\end{align*}
+and define the bands $p_t^+ = \hat p_t^{(L)} + 2\sigma_t^{(L)}$ and $p_t^- = \hat p_t^{(L)} - 2\sigma_t^{(L)}$. If $p_t>p_t^+$, sell and if $p_t<p_t^-$, buy. Evaluate this trading rule. What is the optimal ``$L$''?
+
+
+\end{itemize}
+\item{\it Oscillator Rule}: Define
+$$RSI_t = 100\left(\frac{U_t}{U_t+D_t}\right)$$
+where $U_t$ is the cumulative up movement and $D_t$ is the cumulative down movement over the last $L$ periods, mathematically defined as
+\begin{align*}
+&U_t = \sum_{i=0}^{L-1}I(S_{t-i} - S_{t-i-1}>0)(S_{t-i}-S_{t-i-1})\\
+&D_t = \sum_{i=0}^{L-1}I(S_{t-i} - S_{t-i-1}<0)(S_{t-i}-S_{t-i-1})
+\end{align*}
+If $RSI_t<30$, buy and if $RSI_t>70$, sell. Evaluate this trading strategy. What is the optimal ``$L$''?
+
+\end{enumerate}
+
+\item {\it Use the method of Anatolyev and Gospodinov (2010), decomposing the return $r_t$ as:}
+
+$r_t = c + |r_t - c| (2 * I(r_t > c) -1)$, where $'c'$ is the transaction cost, to jointly model the direction of the change in price and size of the change; develop a rule for trading and evaluate its performance using all the indices stated in Problem 1.
+
+\item {\it Pairs Trading:}
+\begin{enumerate}
+\item{\it Distance Method}
+
+We want to develop a pairs trading strategy and check if it does any better than  the strategies in Problem 1. At the last trading day of the month, look back 3 months and identify if any pairs are worth trading. Use the distance measure, and appropriate thresholds, evaluate the portfolio returns and summarize the results using the same format as in Problems 1 \& 2.
+\item{\it Cointegration Method}
+
+Use the cointegrating relationships between pairs to decide which one to long and how much the other to short and compare the results with 3(a).
+
+\end{enumerate}
+
+\item {\it Multiple Stocks Trading: Cointegration Method}
+
+Consider all three tickers together; evaluate if there is co-integration based on a moving window of durations, such as sixty days. Using the co-integrating vectors, decide how much to short for a unit of long and develop a rule for trading. Evaluate the rule.
+
+\item {Overall Summary:}
+
+Write a brief report on the use of univariate, bivariate and trivariate strategies; provide intuitive reasoning behind the results and suggest some recommendations for trading.
+
+
+%\item {\it Pairs Trading: Cointegration Method}
+%
+%In the cointegration method, we can consider the possibility of trading more than 2 assets. Check using a moving window of 3 months which series are cointegrated. Develop appropriate trading strategies to trade portfolios formed from the cointegrating vectors and compare with the pairs trading strategies from Problem 2. (You may use and extend the ideas from Problem 2 to concretely define the trading indicators and thresholds for entry and exit.) Summarize the performance results as in Problem 1.
+%
+%\item {\it Pairs Trading: APT method}
+%
+%Consider the data with the S\&P500 market index returns and assume that the risk free rate is 3\%. Regress each currency's excess return (over the risk free rate) on the excess market return over a moving window of 3 months. Find pairs based on the similarity of the regression coefficients.
+%\begin{enumerate}
+%\item Compare the pairs that result from the APT method with those obtained in Problem 2.
+%\item After finding the pairs, use the same rules as in Problem 2 to decide when to enter and exit specific trades.
+%\end{enumerate}
+%Summarize the performance results as in Problem 1.
+%
+%\item {\it Summing up}
+%
+%Provide a summary table with the main findings and drawbacks of all the methods that are explored in this assignment. In particular, comment on the performance of single-asset strategies versus multi-asset strategies. Also comment on whether the market factor adds any value.
+\end{enumerate}
+\end{document} 

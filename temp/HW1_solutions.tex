@@ -1,0 +1,617 @@
+\documentclass[11pt]{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{natbib}
+\usepackage{amssymb,amsmath,amsthm,bbm,amsfonts,bbm}
+\usepackage{amsfonts}
+\usepackage{CJK}
+\usepackage{graphicx}                               % Insert Pictures
+\usepackage{calrsfs}                                % Writing Script Letters
+\usepackage{dsfont,pifont}                          % Mathds Font, like "IR"
+\usepackage{indentfirst}                            % Make Indent at First of Section
+\usepackage{array,colortbl}                         % Array and Table
+\usepackage{lscape}                                 % Change a Page to Landscape
+\usepackage{bm,mathrsfs}                                     % Writing Bold Symbol
+\usepackage{titlesec,titletoc}
+\usepackage{multirow,tabularx}
+\usepackage{subfigure}
+\usepackage{tikz}               %%%%%%%%%%%%%%%%%%  add 
+%\usepackage[authoryear,nonamebreak,bibstyle]{natbib}% Reference
+%\usepackage{fourier}                                % Font
+%\usepackage{times,mathptmx}                        % Font: Times New Roman
+%\renewcommand\rmdefault{phv}                       % Font: Set Default to Arial
+%\usepackage{concmath}                              % Font
+%\usepackage{mathpazo}       
+\usepackage{booktabs,caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow}
+
+%\oddsidemargin -.2in
+%\evensidemargin -1in
+
+\textwidth 145mm \textheight 210mm \hoffset -1cm \voffset -1cm
+%\textwidth 7in
+%\topmargin -0.5in
+%\textheight 8.5in
+\linespread{1.6}
+%\title{FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies}
+
+%\date{}
+\begin{document}
+%\maketitle
+\textbf{\Large FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies--Assignment 1, Solutions}
+
+1. (a) Table \ref{tab1} shows the sample mean $\hat{\mu}$, standard deviation $\hat{\sigma}$ and first-order autocorrelation coefficient $\hat{\rho}$ for daily simple returns over the entire sample period for the 15 stocks and two indexes. Figure \ref{meanstocksub}, \ref{sdstocksub} and \ref{farstocksub} present the means, standard deviations and first-order autocorrelation coefficients for 15 stocks for four equal subperiods respectively. These three figures show that $AIG$ is not stable.
+
+Similarly, Figure \ref{meanindsub}, \ref{sdindsub} and \ref{farindsub} show the means, standard deviations and first-order autocorrelation coefficients of the two indexes (VWRETD, EWRETD) for four subperiods. From them, we can see that these two indexes are stable.
+\begin{table}
+\centering
+\begin{tabular}{lccc}
+  \hline
+Names &mean & SD & First-order AR \\ 
+  \hline
+MSFT & 0.00009904 & 0.02083959 & -0.04780523 \\ 
+  T & 0.00028915 & 0.01812412 & -0.00882292 \\ 
+  DD & 0.00021848 & 0.01907428 & -0.03507677 \\ 
+  IBM & 0.00038236 & 0.01771069 & -0.04953134 \\ 
+  BA & 0.00049291 & 0.02042177 & -0.01194315 \\ 
+  MRK & 0.00019233 & 0.01880311 & 0.00771627 \\ 
+  DIS & 0.00040628 & 0.02097049 & -0.04068132 \\ 
+  HPQ & 0.00018854 & 0.02547714 & -0.01509675 \\ 
+  MCD & 0.00049318 & 0.01610964 & -0.02148319 \\ 
+  JPM & 0.00051539 & 0.02836653 & -0.08481484 \\ 
+  WMT & 0.00022346 & 0.01627357 & -0.03534592 \\ 
+  AXP & 0.00049417 & 0.02546958 & -0.06858817 \\ 
+  VZ & 0.00030373 & 0.01723925 & -0.02941973 \\ 
+  HD & 0.00034667 & 0.02197002 & 0.01609763 \\ 
+  AIG & -0.00003672 & 0.04379550 & 0.13459958 \\ 
+  VWRETD & 0.00018740 & 0.01336952 & -0.08466268 \\ 
+  EWRETD & 0.00043655 & 0.01471896 & -0.04082585 \\ 
+   \hline
+\end{tabular}
+\caption{The sample mean, standard deviation and first-order autocorrelation coefficients for daily simple returns over the entire sample period for 15 stocks and 2 indexes}\label{tab1}
+\end{table}
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{mean_stock_sub.pdf}
+\caption{Plot of means of daily returns for 15 stocks for four equal subperiods }
+\label{meanstocksub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{sd_stock_sub.pdf}
+\caption{Plot of standard deviations of daily returns for 15 stocks for four equal subperiods }
+\label{sdstocksub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{far_stock_sub.pdf}
+\caption{Plot of first-order autocorrelation coefficients of daily returns for 15 stocks for four equal subperiods }
+\label{farstocksub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{mean_ind_sub.pdf}
+\caption{Plot of means of daily returns for two indexes for four equal subperiods }
+\label{meanindsub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{sd_ind_sub.pdf}
+\caption{Plot of standard deviations of daily returns for two indexes for four equal subperiods }
+\label{sdindsub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{far_ind_sub.pdf}
+\caption{Plot of first-order autocorrelation coefficients of daily returns for two indexes for four equal subperiods }
+\label{farindsub}
+\end{figure}
+
+1. (b)
+The left panel in Figure \ref{vhist} (\ref{ehist}) presents the histogram of returns of VWRETD (EWRETD) for sample period and the right panel presents the histogram of normal distribution with mean and variance equal to the sample mean and variance of the returns of VWRETD (EWRETD). The red solid line represents the density of normal distribution with same sample mean and variance. We can see the returns of the two indexes distribute symmetrically and have a heavier tail than normal distribution with same sample mean and variance. Comparing the estimated density of returns to density of normal, we can conclude that EWRETD is closer to normal distribution.
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{v_hist.pdf}
+\caption{Histogram of returns of VWRETD for sample period (Left panel) and histogram of normal distribution with mean and variance equal to the sample mean and variance of the returns of VWRETD}
+\label{vhist}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{e_hist.pdf}
+\caption{Histogram of returns of EWRETD for sample period (Left panel) and histogram of normal distribution with mean and variance equal to the sample mean and variance of the returns of EWRETD}
+\label{ehist}
+\end{figure}
+
+1.(c)
+Table \ref{tab2} presents $99\%$ confidence intervals for 15 stocks and two indexes and Figure \ref{cis} shows means and confidence intervals for 15 stocks. From Figure \ref{cis} we can see $AIG$ has larger confidence interval than the other stocks.
+
+Figure \ref{cissub} shows the $99\%$ confidence intervals of 15 stocks for four equal subperiods. We can see from it that $AIG$ shifted a lot. It has much wider confidence interval in the third period, which is due to large standard deviation for the third period.
+
+Figure \ref{cisv} (\ref{cise}) shows the $99\%$ confidence intervals of VWRETD (EWRETD) for four equal subperiods. It can be seen that both of them had wider confidence intervals in the first and third subperiods.
+
+\begin{table}
+\centering
+\begin{tabular}{lcc}
+  \hline
+Names &\multicolumn{2}{c}{Confidence Interval}\\
+ & Lower bound & Upper bound \\ 
+  \hline
+MSFT & -0.00083269 & 0.00103077 \\ 
+  T & -0.00052117 & 0.00109947 \\ 
+  DD & -0.00063432 & 0.00107129 \\ 
+  IBM & -0.00040948 & 0.00117420 \\ 
+  BA & -0.00042015 & 0.00140596 \\ 
+  MRK & -0.00064835 & 0.00103301 \\ 
+  DIS & -0.00053131 & 0.00134386 \\ 
+  HPQ & -0.00095054 & 0.00132761 \\ 
+  MCD & -0.00022708 & 0.00121343 \\ 
+  JPM & -0.00075287 & 0.00178365 \\ 
+  WMT & -0.00050412 & 0.00095105 \\ 
+  AXP & -0.00064457 & 0.00163290 \\ 
+  VZ & -0.00046703 & 0.00107449 \\ 
+  HD & -0.00063560 & 0.00132894 \\ 
+  AIG & -0.00199480 & 0.00192136 \\ 
+  VWRETD & -0.00040981 & 0.00078460 \\ 
+  EWRETD & -0.00022094 & 0.00109403 \\ 
+   \hline
+\end{tabular}
+\caption{$99\%$ confidence intervals for 15 stocks and two indexes}\label{tab2}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{ci_stock.pdf}
+\caption{Means and confidence intervals of 15 stocks for sample periods}
+\label{cis}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{ci_stock_sub.pdf}
+\caption{Means and confidence intervals of 15 stocks for four subperiods}
+\label{cissub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{civ_sub.pdf}
+\caption{Means and confidence intervals of VWRETD for for subperiods}
+\label{cisv}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{cie_sub.pdf}
+\caption{Means and confidence intervals of EWRETD for for subperiods}
+\label{cise}
+\end{figure}
+
+1. (d)
+ Table \ref{tab3} presents skewness, kurtosis and studentized range of daily returns for 15 stocks and two indexes for sample period. Figure \ref{skstocksub}, \ref{kustocksub} and \ref{strstocksub} show skewness, kurtosis and studentized range of daily returns for 15 stocks for four subperiods. We can see from them that $MRK$ fluctuates greatly. It has large skewness, kurtosis and studentized range for the second period.
+
+Table \ref{tab4} presents the results of D'Agostino skewness test for 15 stocks and two indexes for sample period. From it, we can see at $5\%$ level, except $DD$, $BA$, $HPQ$, $MCD$, all the other stocks have skewness. The two indexes are believed not to have skewness at $5\%$ level. Also, we apply same test for monthly data, we have that, except $DD$, $BA$, $HPQ$ and $MCD$, all the other stocks have skewness. Both of the two indexes have no skewness.
+
+\begin{table}
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ & Skewness & Kurtosis & Studentized range \\ 
+  \hline
+MSFT & 0.26712151 & 9.35517826 & 16.87317454 \\ 
+  T & 0.34166508 & 6.45620774 & 15.96839088 \\ 
+  DD & 0.01571746 & 4.74412380 & 11.95321824 \\ 
+  IBM & 0.25832177 & 7.68563395 & 16.14025011 \\ 
+  BA & -0.03741358 & 4.78422967 & 16.20236642 \\ 
+  MRK & -0.91763385 & 18.67945884 & 21.17388833 \\ 
+  DIS & 0.16376832 & 7.48862819 & 16.37310465 \\ 
+  HPQ & 0.02804137 & 6.76836048 & 14.64661999 \\ 
+  MCD & -0.02312892 & 5.28923082 & 13.78460211 \\ 
+  JPM & 0.81922208 & 12.07439271 & 16.15428649 \\ 
+  WMT & 0.34671438 & 5.33974485 & 12.23413515 \\ 
+  AXP & 0.39103655 & 8.63989084 & 15.01532583 \\ 
+  VZ & 0.36090480 & 6.57895429 & 15.35948283 \\ 
+  HD & -0.37088818 & 12.58005752 & 19.48209743 \\ 
+  AIG & 1.44224536 & 57.64378532 & 28.95064328 \\ 
+  VWRETD & 0.03201377 & 7.47400349 & 15.34012036 \\ 
+  EWRETD & 0.00736678 & 7.82015212 & 15.06539849 \\ 
+   \hline
+\end{tabular}
+\caption{Skewness, kurtosis and studentized range of daily returns for 15 stocks and two indexes for sample period}\label{tab3}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{sk_stock_sub.pdf}
+\caption{Plot of skewness of daily returns for 15 stocks for four equal subperiods }
+\label{skstocksub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{ku_stock_sub.pdf}
+\caption{Plot of kurtosis of daily returns for 15 stocks for four equal subperiods }
+\label{kustocksub}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{str_stock_sub.pdf}
+\caption{Plot of studentized range of daily returns for 15 stocks for four equal subperiods }
+\label{strstocksub}
+\end{figure}
+
+
+\begin{table}
+\centering
+\tiny
+\begin{tabular}{lc}
+  \hline
+Name&D'Agostino skewness test\\
+\hline
+MSFT
+
+
+&skew = 0.2672, z = 4.0836, p-value = 4.434e-05\\
+&alternative hypothesis: data have a skewness\\
+\\
+T
+
+	
+
+
+&skew = 0.3418, z = 5.1700, p-value = 2.342e-07\\
+&alternative hypothesis: data have a skewness\\
+
+\\
+DD
+
+	
+
+
+&skew = 0.0157, z = 0.2444, p-value = 0.8069\\
+&alternative hypothesis: data have a skewness\\
+
+\\
+IBM
+
+
+
+
+&skew = 0.2584, z = 3.9533, p-value = 7.708e-05\\
+&alternative hypothesis: data have a skewness\\
+
+\\
+BA
+
+&skew = -0.0374, z = -0.5816, p-value = 0.5608\\
+&alternative hypothesis: data have a skewness\\
+
+\\
+MRK
+
+&skew = -0.9180, z = -12.2775, p-value $<$ 2.2e-16\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+DIS
+
+&skew = 0.1638, z = 2.5300, p-value = 0.0114\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+HPQ
+
+&skew = 0.0281, z = 0.4360, p-value = 0.6629\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+MCD
+
+
+&skew = -0.0231, z = -0.3596, p-value = 0.7191\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+JPM
+
+	
+&skew = 0.8196, z = 11.2274, p-value $<$ 2.2e-16\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+WMT
+
+	
+&skew = 0.3469, z = 5.2423, p-value = 1.586e-07\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+AXP
+
+
+&skew = 0.3912, z = 5.8707, p-value = 4.339e-09\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+VZ
+
+
+&skew = 0.3611, z = 5.4449, p-value = 5.183e-08\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+HD
+
+	
+&skew = -0.3711, z = -5.5867, p-value = 2.315e-08\\
+&alternative hypothesis: data have a skewness\\
+\\
+
+AIG
+
+	
+&skew = 1.4429, z = 16.9552, p-value $<$ 2.2e-16\\
+&alternative hypothesis: data have a skewness\\
+\\
+VWRETD
+
+
+&skew = 0.0320, z = 0.4982, p-value = 0.6184\\
+&alternative hypothesis: data have a skewness\\
+
+\\
+EWRETD
+
+
+&skew = 0.0074, z = 0.1147, p-value = 0.9087\\
+&alternative hypothesis: data have a skewness\\
+
+
+
+\end{tabular}
+\caption{D'Agostino skewness test for 15 stocks and two indexes for sample period}\label{tab4}
+\end{table}
+
+Table \ref{tab5} presents the results of Anscombe-Glynn kurtosis test for 15 stocks and two indexes for sample period. It can be seen that the kurtosis of all stocks and indexes are not equal to 3. We repeat the same test for monthly data of stocks and indexes at $5\%$ level. We have that except for $HD$ and EWRETD, the kurtosis of all the other stocks and indexes are not equal to 3. 
+
+Therefore, we conclude that these 17 series stocks and 2 indexes do not normally distributed since they do not have similar skewness and kurtosis to normal distribution. (We can have the same conclusion if we use Jarque-Bera test). 
+
+\begin{table}
+\tiny
+\centering
+\begin{tabular}{lc}
+  \hline
+ Names& Anscombe-Glynn kurtosis test \\ 
+  \hline
+
+	
+MSFT
+
+&kurt = 12.3626, z = 23.8171, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+T
+
+	
+&kurt = 9.4619, z = 21.1718, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+DD
+
+&kurt = 7.7488, z = 18.8935, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+IBM
+
+
+&kurt = 10.6921, z = 22.4317, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+BA
+
+	
+&kurt = 7.7889, z = 18.9564, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+\\
+MRK
+
+	
+&kurt = 21.6925, z = 28.3067, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+DIS
+
+	
+&kurt = 10.4949, z = 22.2457, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+HPQ
+
+	
+&kurt = 9.7742, z = 21.5156, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+MCD
+
+	
+&kurt = 8.2942, z = 19.7033, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+JPM
+
+	
+&kurt = 15.0835, z = 25.5485, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+WMT
+
+	
+&kurt = 8.3448, z = 19.7738, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+AXP
+
+	
+&kurt = 11.6469, z = 23.2615, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+VZ
+
+	
+&kurt = 9.5847, z = 21.3092, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+HD
+
+	
+&kurt = 15.5894, z = 25.8191, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+
+\\
+AIG
+
+&kurt = 60.6803, z = 34.1507, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+\\
+VWRETD
+
+	
+&kurt = 10.4803, z = 22.2513, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+\\
+EWRETD
+
+&kurt = 10.8267, z = 22.5755, p-value $<$ 2.2e-16\\
+&alternative hypothesis: kurtosis is not equal to 3\\
+\end{tabular}
+\caption{ Anscombe-Glynn kurtosis test for 15 stocks and two indexes for sample period}\label{tab5}
+\end{table}
+
+2. (a)
+
+Table \ref{tab6} presents Ljung-Box test for log return series of AAPL stock. The Ljung statistics is 19.507 and $p$-value is 0.0343. Since the $p$-value is less than $5\%$ level, we reject the null hypothesis and believe there exists serial correlation in the daily log returns.
+\begin{table}[ht]
+\centering
+\begin{tabular}{c}
+  \hline
+\\
+ Ljung-Box test\\
+\\
+\hline
+\\
+Ljung-Box statistic = 19.50658, df = 10 p.value = 0.034281\\
+\\
+Null hypothesis: rho(1) = rho(2) = ... = rho(10) = 0\\
+\hline
+\end{tabular}
+\caption{ Kjung-Box test for log return series of AAPL stock}\label{tab6}
+\end{table}
+
+(b)
+The $ar$ function with the maximum likelihood method specifies an AR(6) model for the log return series.
+
+Figure \ref{lm} shows the results of model fitting where $x_i (i=1,\ldots,6)$ represent variable $r_{t-i}$. THe fitted model is
+\begin{eqnarray*}
+r_t&=&0.001467935+  0.001303642r_{t-1} -0.026192404 r_{t-2} +0.010542232 r_{t-3} \\
+&& +0.059773308 r_{t-4} +0.024155045r_{t-5} -0.038964763r_{t-6}
+\end{eqnarray*}
+The AR parameters are significant only for intercept as well as lag4 and lag6. A possible reason for not all coefficients being significant is lag4 and lag6 contain information brought by other lags.
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{lm.pdf}
+\caption{Regression analysis of log return series of AAPL stock  }
+\label{lm}
+\end{figure}
+
+(c)
+The fitted mode is
+\begin{equation}\label{eqn1}
+r_t=-0.0014677+0.0597905r_{t-4}-0.0389441r_{t-6}+\epsilon_t
+\end{equation}
+
+(d)
+In order to check if the log price series is unit-root stationary, we chose to use Augmented Dickey-Fuller Test. From Figure \ref{urtest}, we can see the $p$-value for lag 4 is less than $5\%$ level, which means we reject null hypothesis for lag 4 and believe unit root is present.
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{urtest.pdf}
+\caption{Results of Augmented Dickey-Fuller Test   }
+\label{urtest}
+\end{figure}
+
+3 (a)
+We use the fitted model (\ref{eqn1}) to remove the serial correlations. Figure \ref{pacf} shows residuals, autocorrelations coefficients (adf) of residuals and partial autocorrelations coefficients (pacf) of residuals. ACF shows that we have removed serial correlations in the log returns but the PACF shows that after lag 6, the pacf of residuals are not close to zero. Therefore, we believe there exist some ARCH effects in the daily log returns after removing serial correlations.
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{pacf.pdf}
+\caption{Residuals, autocorrelations (adf) of residuals and partial autocorrelations (pacf) of residuals  }
+\label{pacf}
+\end{figure}
+
+(b)
+Figure \ref{garchnom} shows the results of fitted GARCH(1,1) model with Gaussian innovations. We can see from it that only intercept as well as the coefficients of lag4 and lag6 are significant. The fitted model is
+\begin{eqnarray*}
+r_t&=& 2.091\time10^{-3}+4.076\times10^{-2}r_{t-4}-4.5\times10^{-2}r_{t-6}+u_t\\
+u_t&=&\sigma_t\epsilon_t\\
+\sigma^2_t&=&7.437\times 10^{-6}+5.243\times10^{-2}u^2_{t-1}+9.352\times10^{-1}\sigma^2_{t-1}
+\end{eqnarray*}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{garchnorm.pdf}
+\caption{Fit GARCH(1,1) model with Gaussian innovations for log return series of AAPL stock  }
+\label{garchnom}
+\end{figure}
+
+(c)
+Figure \ref{garchstd} shows the results of fitted GARCH(1,1) model with studentized $t$-distribution innovation We can see from it that only intercept as well as the coefficients of lag4 are significant. The fitted model is
+\begin{eqnarray*}
+r_t&=& 1.683\time10^{-3}+4.388\times10^{-2}r_{t-4}+u_t\\
+u_t&=&\sigma_t\epsilon_t\\
+\sigma^2_t&=&5.624\times 10^{-6}+4.64\times10^{-2}u^2_{t-1}+9.446\times10^{-1}\sigma^2_{t-1}\\
+t&\sim&t_{5.343}
+\end{eqnarray*}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{garchstd.pdf}
+\caption{Fit GARCH(1,1) model with studentized $t$-distribution innovations for log return series of AAPL stock  }
+\label{garchstd}
+\end{figure}
+
+(d)
+Figure \ref{igarch} shows the results of fitted integrated GARCH(1,1) model with Gaussian innovation  The fitted model is
+\begin{eqnarray*}
+r_t&=& 2.787\time10^{-3}+5.634\times10^{-2}r_{t-4}-6.4286\times10^{-2}r_{t-6}+u_t\\
+u_t&=&\sigma_t\epsilon_t\\
+\sigma^2_t&=&3.0\times 10^{-6}+0.0527u^2_{t-1}+0.9473\sigma^2_{t-1}
+\end{eqnarray*}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{igarch.pdf}
+\caption{Fit IGARCH(1,1) model for log return series of AAPL stock  }
+\label{igarch}
+\end{figure}
+(e)
+ Since the sum of $\alpha_1$ and $\beta_1$ is close to 1, IGARCH(1,1) is the best to be used.
+
+\end{document}

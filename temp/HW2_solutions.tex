@@ -1,0 +1,1388 @@
+\documentclass[11pt]{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{natbib}
+\usepackage{amssymb,amsmath,amsthm,bbm,amsfonts,bbm}
+\usepackage{amsfonts}
+\usepackage{CJK}
+\usepackage{graphicx}                               % Insert Pictures
+\usepackage{calrsfs}                                % Writing Script Letters
+\usepackage{dsfont,pifont}                          % Mathds Font, like "IR"
+\usepackage{indentfirst}                            % Make Indent at First of Section
+\usepackage{array,colortbl}                         % Array and Table
+\usepackage{lscape}                                 % Change a Page to Landscape
+\usepackage{bm,mathrsfs}                                     % Writing Bold Symbol
+\usepackage{titlesec,titletoc}
+\usepackage{multirow,tabularx}
+\usepackage{subfigure}
+\usepackage{tikz}               %%%%%%%%%%%%%%%%%%  add 
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{subfigure}
+\usepackage{longtable}
+
+%\usepackage[authoryear,nonamebreak,bibstyle]{natbib}% Reference
+%\usepackage{fourier}                                % Font
+%\usepackage{times,mathptmx}                        % Font: Times New Roman
+%\renewcommand\rmdefault{phv}                       % Font: Set Default to Arial
+%\usepackage{concmath}                              % Font
+%\usepackage{mathpazo}       
+\usepackage{booktabs,caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow}
+
+%\oddsidemargin -.2in
+%\evensidemargin -1in
+
+\textwidth 145mm \textheight 210mm \hoffset -1cm \voffset -1cm
+%\textwidth 7in
+%\topmargin -0.5in
+%\textheight 8.5in
+\linespread{1.6}
+%\title{FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies}
+
+%\date{}
+\begin{document}
+%\maketitle
+\textbf{\Large FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies--Assignment 2, Solutions}
+\begin{center}
+Yin Teng\\
+A0068164B, DSAP, NUS
+\end{center}
+\section{Solutions of Question 1} 
+\subsection{Question 1 (a)}
+From Table \ref{tab1} we can see $p$-value of intercept for SML, BIGL, BIG2 and BIGH are not significant and $p$-value for SM2 and SMH are significant. Therefore, we reject CAMP model for SM2 and SMH.
+
+Figures \ref{smllm} to \ref{bighlm} provide linear regression analysis for predicted value $\hat{Y}_i$ over absolute value of residuals $|e_i|$. This is a quick way to check non-constant variance (Faraway (2005)).  we can see for each portfolio, $|e_i|$ has linear relationships with the predicted value $\hat{Y}_i$. This point can also be seen from Figure \ref{sml4} to \ref{bigh4} that the residuals change dramatically as the fitted value of response variable. In addition, QQ-plots show that the residuals are not normal distributed. 
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccccccccc}
+  \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML&Intercept & -0.1039 & 0.1106 & -0.9391 & 0.3479 \\ 
+   &Mkt-RF& 1.2751 & 0.0202 & 63.0866 & 0.0000 \\ 
+\\
+  SM2&Intercept & 0.2399 & 0.0931 & 2.5758 & 0.0101 \\ 
+   &Mkt-RF& 1.1853 & 0.0170 & 69.6595 & 0.0000 \\
+\\ 
+  SMH&Intercept & 0.3513 & 0.1283 & 2.7375 & 0.0063 \\ 
+   &Mkt-RF& 1.3293 & 0.0234 & 56.7001 & 0.0000 \\ 
+\\
+ BIGL& Intercept & -0.0013 & 0.0367 & -0.0347 & 0.9723 \\ 
+  &Mkt-RF & 0.9642 & 0.0067 & 143.7338 & 0.0000 \\ 
+\\
+  BIG2&Intercept & 0.0328 & 0.0539 & 0.6081 & 0.5433 \\ 
+   &Mkt-RF& 1.0193 & 0.0098 & 103.5946 & 0.0000 \\ 
+\\
+  BIGH&Intercept & 0.1306 & 0.0975 & 1.3402 & 0.1805 \\ 
+  & Mkt-RF& 1.2033 & 0.0178 & 67.5747 & 0.0000 \\ 
+   \hline
+\end{tabular}
+
+\caption{ Estimates, standard error, t value and p-value for CAMP}\label{tab1}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lm.png}
+\caption{SML: $\hat{Y}_i$ vs $|e_i|$}
+\label{smllm}
+\includegraphics[scale=0.8]{sm2_lm.png}
+\caption{SM2: $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lm}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lm.png}
+\caption{SMH: $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlm}
+\includegraphics[scale=0.8]{bigl_lm.png}
+\caption{BIGL: $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllm}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lm.png}
+\caption{BIG2: $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lm}
+\includegraphics[scale=0.8]{bigh_lm.png}
+\caption{BIGH: $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlm}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{sml4.pdf}
+\caption{Regression diagnostics figures for SML }
+\label{sml4}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm24.pdf}
+\caption{Regression diagnostics figures for SM2}
+\label{sm24}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{smh4.pdf}
+\caption{Regression diagnostics figures for SMH}
+\label{smh4}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl4.pdf}
+\caption{Regression diagnostics figures for BIGL}
+\label{bigl4}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{big24.pdf}
+\caption{Regression diagnostics figures for BIG2}
+\label{big24}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigh4.pdf}
+\caption{Regression diagnostics figures for BIGH}
+\label{bigh4}
+\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=1.0\textwidth]{bigh_lm.png}
+%\caption{Regression analysis of log return series of AAPL stock  }
+%\label{lm}
+%\end{figure}
+\clearpage
+\subsection{Question 1 (b)}
+Table \ref{tab2} show the results of regression analysis of first part of equal-partitioned sub-samples. From the last column of Table \ref{tab2}, we know we fail to reject CAPM for all portfolios because their intercepts are not significant.
+
+By doing similar regression diagnostics for residuals we know for each portfolio in its first sub-sample, we find that $|e_i|$ depends on $\hat{Y}_i$ and the residuals are not normally distributed. 
+
+Table \ref{tab3} show the results of regression analysis of the second part of equal-partitioned sub-samples. From the last column of Table \ref{tab2}, we know we fail to reject CAPM for SM2, SMH and BIGHall portfolios because their intercepts are significant. 
+
+By doing similar regression diagnostics for residuals we know for each portfolio in its second sub-sample, we find that $|e_i|$ does not depend on $\hat{Y}_i$ (p-value is greater thatn 0.05) and some of the residuals are close tp normal distribution. 
+
+\begin{table}
+\centering
+\begin{tabular}{ccccccccccc}
+  \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML&Intercept  & 0.0341 & 0.1620 & 0.2105 & 0.8334 \\ 
+  &Mkt-RF & 1.2402 & 0.0263 & 47.1336 & 0.0000 \\ 
+  SM2& Intercept & 0.1625 & 0.1418 & 1.1460 & 0.2523 \\ 
+  &Mkt-RF & 1.2646 & 0.0230 & 54.9188 & 0.0000 \\ 
+  SMH& Intercept & 0.2298 & 0.2050 & 1.1207 & 0.2630 \\ 
+  &Mkt-RF & 1.5014 & 0.0333 & 45.0854 & 0.0000 \\ 
+  BIGL& Intercept & 0.0213 & 0.0472 & 0.4522 & 0.6513 \\ 
+  &Mkt-RF & 0.9394 & 0.0077 & 122.6457 & 0.0000 \\ 
+  BIG2& Intercept & -0.0513 & 0.0738 & -0.6958 & 0.4868 \\ 
+  &Mkt-RF & 1.0857 & 0.0120 & 90.5769 & 0.0000 \\ 
+  BIGH& Intercept & 0.0388 & 0.1447 & 0.2679 & 0.7889 \\ 
+  &Mkt-RF & 1.3820 & 0.0235 & 58.7961 & 0.0000 \\ 
+   \hline
+\end{tabular}
+\caption{ Estimates, standard error, t value and p-value for CAMP for the first sub-sample}\label{tab2}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lm1.png}
+\caption{SML (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smllm1}
+\includegraphics[scale=0.8]{sm2_lm1.png}
+\caption{SM2 (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lm1}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lm1.png}
+\caption{SMH (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlm1}
+\includegraphics[scale=0.8]{bigl_lm1.png}
+\caption{BIGL (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllm1}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lm1.png}
+\caption{BIG2 (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lm1}
+\includegraphics[scale=0.8]{bigh_lm1.png}
+\caption{BIGH (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlm1}
+\end{figure}
+
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{sml41.pdf}
+\caption{Regression diagnostics figures for SML (first sub-sample) }
+\label{sml41}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm241.pdf}
+\caption{Regression diagnostics figures for SM2 (first sub-sample)}
+\label{sm241}
+\end{figure}
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{smh41.pdf}
+\caption{Regression diagnostics figures for SMH (first sub-sample)}
+\label{smh41}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl41.pdf}
+\caption{Regression diagnostics figures for BIGL (first sub-sample)}
+\label{bigl41}
+\end{figure}
+\FloatBarrier
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{big241.pdf}
+\caption{Regression diagnostics figures for BIG2 (first sub-sample)}
+\label{big241}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{bigh41.pdf}
+\caption{Regression diagnostics figures for BIGH (first sub-sample)}
+\label{bigh41}
+\end{figure}
+
+
+
+
+
+\begin{table}
+\centering
+\begin{tabular}{ccccccccccc}
+  \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML&Intercept   & -0.2402 & 0.1502 & -1.5995 & 0.1103 \\ 
+  &Mkt-RF & 1.3330 & 0.0320 & 41.6588 & 0.0000 \\ 
+  SM2&Intercept   & 0.3152 & 0.1160 & 2.7173 & 0.0068 \\ 
+  &Mkt-RF & 1.0502 & 0.0247 & 42.4901 & 0.0000 \\ 
+  SMH&Intercept   & 0.4685 & 0.1349 & 3.4740 & 0.0006 \\ 
+  &Mkt-RF & 1.0352 & 0.0287 & 36.0258 & 0.0000 \\ 
+  BIGL&Intercept   & -0.0232 & 0.0553 & -0.4199 & 0.6747 \\ 
+  &Mkt-RF & 1.0064 & 0.0118 & 85.4496 & 0.0000 \\ 
+  BIG2&Intercept   & 0.1149 & 0.0729 & 1.5770 & 0.1154 \\ 
+  &Mkt-RF & 0.9064 & 0.0155 & 58.3894 & 0.0000 \\ 
+  BIGH&Intercept   & 0.2182 & 0.1040 & 2.0980 & 0.0364 \\ 
+  &Mkt-RF & 0.8974 & 0.0222 & 40.4917 & 0.0000 \\ 
+   \hline
+\end{tabular}
+\caption{ Estimates, standard error, t value and p-value for CAMP for the second sub-sample}\label{tab3}
+\end{table}
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lm2.png}
+\caption{SML (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smllm2}
+\includegraphics[scale=0.8]{sm2_lm2.png}
+\caption{SM2 (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lm2}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lm2.png}
+\caption{SMH (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlm2}
+\includegraphics[scale=0.8]{bigl_lm2.png}
+\caption{BIGL (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllm2}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lm2.png}
+\caption{BIG2 (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lm2}
+\includegraphics[scale=0.8]{bigh_lm2.png}
+\caption{BIGH (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlm2}
+\end{figure}
+
+
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{sml42.pdf}
+\caption{Regression diagnostics figures for SML (second sub-sample)}
+\label{sml42}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm242.pdf}
+\caption{Regression diagnostics figures for SM2 (second sub-sample)}
+\label{sm242}
+\end{figure}
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{smh42.pdf}
+\caption{Regression diagnostics figures for SMH (second sub-sample)}
+\label{smh42}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl42.pdf}
+\caption{Regression diagnostics figures for BIGL (second sub-sample)}
+\label{bigl42}
+\end{figure}
+\FloatBarrier
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{big242.pdf}
+\caption{Regression diagnostics figures for BIG2 (second sub-sample)}
+\label{big242}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{bigh42.pdf}
+\caption{Regression diagnostics figures for BIGH (second sub-sample)}
+\label{bigh42}
+\end{figure}
+
+\subsection{Question 1 (c)}
+In the first place, we analyse these 6 portfolios for the whole sample.
+From Table \ref{tab4} we know that the Fama-French model should be rejected for portfolio SML, BIGLand BIGH.
+
+From Figures \ref{smllmff} to \ref{bighlmff}, we can see the absolute value of residuals depend on the predicted response variable. 
+
+From Figures \ref{sml4ff} to \ref{bigh4ff}, we can see there are some very large residuals and the residuals are not normally distributed.
+
+Second, we divide these 6 portfolio in two equal sub-samples and repeat the analysis in our first step. Table \ref{tab5} show the  estimates, t value and $p$-value for first sub-sample of each portfolio. We can see we do not reject Fama-French model for any portfolio. If we apply regression diagnosis, we find that for the first sub-sample, $|e_i|$ depends on $\hat{Y}_i$ and and the residuals are not normal (see Figures \ref{sml_lm1ff} to \ref{bigh41ff}). Similarly, Table \ref{tab6} show the estimates, t value and $p$-value for second sub-sample of each portfolio. We reject the Fama-French model for the second sub-sample of SML, SM2, SMH, BIGL and BIGH. Moreover, we do regression diagnostic. From the results shown in Figures \ref{sml_lm2ff} to \ref{sml42ff}, the absolute value of residuals do not depend on the predicted response variable except SMH, and tey are not normal.
+
+
+\begin{table}
+\centering
+\begin{tabular}{cccccccccccccc}
+ \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML & Intercept & -0.1685 & 0.0393 & -4.2927 & 0 \\ 
+   & Mkt-RF & 1.0886 & 0.0077 & 140.8001 & 0 \\ 
+   & SMB & 1.0502 & 0.0125 & 84.2046 & 0 \\ 
+   & HML & -0.1674 & 0.0112 & -14.9025 & 0 \\ 
+  SM2 & Intercept & 0.0625 & 0.0334 & 1.8737 & 0.0613 \\ 
+   & Mkt-RF & 0.9765 & 0.0066 & 148.5603 & 0 \\ 
+   & SMB & 0.8183 & 0.0106 & 77.1721 & 0 \\ 
+   & HML & 0.3021 & 0.0096 & 31.6223 & 0 \\ 
+  SMH & Intercept & 0.0202 & 0.0247 & 0.8188 & 0.4131 \\ 
+   & Mkt-RF & 1.0269 & 0.0049 & 211.3256 & 0 \\ 
+   & SMB & 0.9331 & 0.0078 & 119.0325 & 0 \\ 
+   & HML & 0.783 & 0.0071 & 110.8714 & 0 \\ 
+  BIGL & Intercept & 0.077 & 0.0251 & 3.0663 & 0.0022 \\ 
+   & Mkt-RF & 1.0174 & 0.0049 & 205.774 & 0 \\ 
+   & SMB & -0.0965 & 0.008 & -12.1027 & 0 \\ 
+   & HML & -0.2307 & 0.0072 & -32.111 & 0 \\ 
+  BIG2 & Intercept & -0.0507 & 0.0391 & -1.2981 & 0.1945 \\ 
+   & Mkt-RF & 0.9956 & 0.0077 & 129.3624 & 0 \\ 
+   & SMB & -0.1223 & 0.0124 & -9.8531 & 0 \\ 
+   & HML & 0.3292 & 0.0112 & 29.4372 & 0 \\ 
+  BIGH & Intercept & -0.1121 & 0.0406 & -2.761 & 0.0059 \\ 
+   & Mkt-RF & 1.0791 & 0.008 & 134.8755 & 0 \\ 
+   & SMB & 0.0205 & 0.0129 & 1.5862 & 0.113 \\ 
+   & HML & 0.8188 & 0.0116 & 70.426 & 0 \\ 
+   \hline
+\end{tabular}
+
+\caption{ Estimates, standard error, t value and p-value for Fama-French model}\label{tab4}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lmff.png}
+\caption{SML: $\hat{Y}_i$ vs $|e_i|$}
+\label{smllmff}
+\includegraphics[scale=0.8]{sm2_lmff.png}
+\caption{SM2: $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lmff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lmff.png}
+\caption{SMH: $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlmff}
+\includegraphics[scale=0.8]{bigl_lmff.png}
+\caption{BIGL: $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllmff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lmff.png}
+\caption{BIG2: $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lmff}
+\includegraphics[scale=0.8]{bigh_lmff.png}
+\caption{BIGH: $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlmff}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{sml4ff.pdf}
+\caption{Regression diagnostics figures for SML }
+\label{sml4ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm24ff.pdf}
+\caption{Regression diagnostics figures for SM2}
+\label{sm24ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{smh4ff.pdf}
+\caption{Regression diagnostics figures for SMH}
+\label{smh4ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl4ff.pdf}
+\caption{Regression diagnostics figures for BIGL}
+\label{bigl4ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{big24ff.pdf}
+\caption{Regression diagnostics figures for BIG2}
+\label{big24ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigh4ff.pdf}
+\caption{Regression diagnostics figures for BIGH}
+\label{bigh4ff}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllll}
+  \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML & Intercept & -0.1036 & 0.0617 & -1.6793 & 0.0937 \\ 
+   & Mkt-RF & 1.0633 & 0.0121 & 87.533 & 0 \\ 
+   & SMB & 1.0699 & 0.0194 & 55.0751 & 0 \\ 
+   & HML & -0.1043 & 0.0184 & -5.6748 & 0 \\ 
+  SM2 & Intercept & 0.0197 & 0.0525 & 0.3753 & 0.7076 \\ 
+   & Mkt-RF & 1.0148 & 0.0103 & 98.2084 & 0 \\ 
+   & SMB & 0.8525 & 0.0165 & 51.5878 & 0 \\ 
+   & HML & 0.226 & 0.0156 & 14.4615 & 0 \\ 
+  SMH & Intercept & 0.0059 & 0.0354 & 0.1674 & 0.8671 \\ 
+   & Mkt-RF & 1.0198 & 0.007 & 146.2873 & 0 \\ 
+   & SMB & 0.9867 & 0.0111 & 88.5096 & 0 \\ 
+   & HML & 0.8088 & 0.0105 & 76.7196 & 0 \\ 
+  BIGL & Intercept & 0.0521 & 0.0296 & 1.7586 & 0.0792 \\ 
+   & Mkt-RF & 1.0301 & 0.0058 & 176.6643 & 0 \\ 
+   & SMB & -0.0402 & 0.0093 & -4.309 & 0 \\ 
+   & HML & -0.2349 & 0.0088 & -26.6342 & 0 \\ 
+  BIG2 & Intercept & -0.0719 & 0.0575 & -1.2497 & 0.212 \\ 
+   & Mkt-RF & 0.9941 & 0.0113 & 87.773 & 0 \\ 
+   & SMB & -0.0938 & 0.0181 & -5.1774 & 0 \\ 
+   & HML & 0.3134 & 0.0171 & 18.2976 & 0 \\ 
+  BIGH & Intercept & -0.0584 & 0.0653 & -0.8946 & 0.3714 \\ 
+   & Mkt-RF & 1.0737 & 0.0129 & 83.5053 & 0 \\ 
+   & SMB & 0.0429 & 0.0206 & 2.0874 & 0.0373 \\ 
+   & HML & 0.8518 & 0.0194 & 43.8054 & 0 \\ 
+   \hline
+\end{tabular}
+\caption{ Estimates, standard error, t value and p-value for Fama-French model for first sub-sample}\label{tab5}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lm1ff.png}
+\caption{SML (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smllm1ff}
+\includegraphics[scale=0.8]{sm2_lm1ff.png}
+\caption{SM2 (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lm1ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lm1ff.png}
+\caption{SMH (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlm1ff}
+\includegraphics[scale=0.8]{bigl_lm1ff.png}
+\caption{BIGL (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllm1ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lm1ff.png}
+\caption{BIG2 (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lm1ff}
+\includegraphics[scale=0.8]{bigh_lm1ff.png}
+\caption{BIGH (first sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlm1ff}
+\end{figure}
+
+\FloatBarrier 
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{sml41ff.pdf}
+\caption{Regression diagnostics figures for SML (first sub-sample) }
+\label{sml41ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm241ff.pdf}
+\caption{Regression diagnostics figures for SM2 (first sub-sample)}
+\label{sm241ff}
+\end{figure}
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{smh41ff.pdf}
+\caption{Regression diagnostics figures for SMH (first sub-sample)}
+\label{smh41ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl41ff.pdf}
+\caption{Regression diagnostics figures for BIGL (first sub-sample)}
+\label{bigl41ff}
+\end{figure}
+\FloatBarrier
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{big241ff.pdf}
+\caption{Regression diagnostics figures for BIG2 (first sub-sample)}
+\label{big241ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{bigh41ff.pdf}
+\caption{Regression diagnostics figures for BIGH (first sub-sample)}
+\label{bigh41ff}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllll}
+  \hline
+ Portfolios&Ind. variable& Estimate & Std. Error & t value & p value \\ 
+  \hline
+SML & Intercept & -0.1885 & 0.0456 & -4.1295 & 0 \\ 
+   & Mkt-RF & 1.0753 & 0.0104 & 103.3947 & 0 \\ 
+   & SMB & 0.9975 & 0.015 & 66.5329 & 0 \\ 
+   & HML & -0.2724 & 0.0158 & -17.2031 & 0 \\ 
+  SM2 & Intercept & 0.0856 & 0.0386 & 2.2185 & 0.027 \\ 
+   & Mkt-RF & 0.9584 & 0.0088 & 108.9705 & 0 \\ 
+  & SMB & 0.8051 & 0.0127 & 63.498 & 0 \\ 
+   & HML & 0.3515 & 0.0134 & 26.2486 & 0 \\ 
+  SMH & Intercept & 0.0754 & 0.0294 & 2.5651 & 0.0106 \\ 
+   & Mkt-RF & 1.0022 & 0.0067 & 149.5204 & 0 \\ 
+   & SMB & 0.8528 & 0.0097 & 88.2617 & 0 \\ 
+   & HML & 0.6878 & 0.0102 & 67.4062 & 0 \\ 
+  BIGL & Intercept & 0.1365 & 0.0367 & 3.7206 & 2e-04 \\ 
+   & Mkt-RF & 0.9782 & 0.0084 & 116.9937 & 0 \\ 
+   & SMB & -0.1704 & 0.0121 & -14.1402 & 0 \\ 
+   & HML & -0.3083 & 0.0127 & -24.2217 & 0 \\ 
+  BIG2 & Intercept & -0.0366 & 0.0532 & -0.688 & 0.4918 \\ 
+   & Mkt-RF & 1.0064 & 0.0121 & 83.0221 & 0 \\ 
+   & SMB & -0.1485 & 0.0175 & -8.4962 & 0 \\ 
+   & HML & 0.3432 & 0.0185 & 18.6014 & 0 \\ 
+  BIGH & Intercept & -0.1274 & 0.0466 & -2.7341 & 0.0065 \\ 
+   & Mkt-RF & 1.0515 & 0.0106 & 99.046 & 0 \\ 
+   & SMB & -0.0258 & 0.0153 & -1.6863 & 0.0923 \\ 
+   & HML & 0.7318 & 0.0162 & 45.2798 & 0 \\ 
+   \hline
+\end{tabular}
+\caption{ Estimates, standard error, t value and p-value for Fama-French model for second sub-sample}\label{tab6}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{sml_lm2ff.png}
+\caption{SML (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smllm2ff}
+\includegraphics[scale=0.8]{sm2_lm2ff.png}
+\caption{SM2 (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{sm2lm2ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{smh_lm2ff.png}
+\caption{SMH (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{smhlm2ff}
+\includegraphics[scale=0.8]{bigl_lm2ff.png}
+\caption{BIGL (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bigllm2ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=0.8]{big2_lm2ff.png}
+\caption{BIG2 (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{big2lm2ff}
+\includegraphics[scale=0.8]{bigh_lm2ff.png}
+\caption{BIGH (second sub-sample): $\hat{Y}_i$ vs $|e_i|$}
+\label{bighlm2ff}
+\end{figure}
+
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{sml42ff.pdf}
+\caption{Regression diagnostics figures for SML (second sub-sample)}
+\label{sml42ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1.0]{sm242ff.pdf}
+\caption{Regression diagnostics figures for SM2 (second sub-sample)}
+\label{sm242ff}
+\end{figure}
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{smh42ff.pdf}
+\caption{Regression diagnostics figures for SMH (second sub-sample)}
+\label{smh42ff}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=1]{bigl42ff.pdf}
+\caption{Regression diagnostics figures for BIGL (second sub-sample)}
+\label{bigl42ff}
+\end{figure}
+\FloatBarrier
+\begin{figure}
+%\centering
+\includegraphics[scale=1]{big242ff.pdf}
+\caption{Regression diagnostics figures for BIG2 (second sub-sample)}
+\label{big242ff}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{bigh42ff.pdf}
+\caption{Regression diagnostics figures for BIGH (second sub-sample)}
+\label{bigh42ff}
+\end{figure}
+
+\subsection{Question 1(d)}
+Table \ref{tab7} show the results of $Hotelling's ~T^2$ test. We can see the $p$-value for intercept is close to 0, therefore we reject the hull hypothesis and believe at least a intercept for these 6 portfolio is significant.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllllll}
+  \hline
+&DF&Hotelling-Lawley&approx F & num DF & den DF &$p$-valye\\
+\hline
+Intercept&1&13575&2323509  &    6  & 1027& $< 2.2e-16$\\
+Mkr-RF&1&128255&  21953034&      6&   1027&$ < 2.2e-16$\\
+SMB&1&687169 &117620447&      6 &  1027& $< 2.2e-16$ \\
+HML&1&752609 &128821544&      6 &  1027&$ < 2.2e-16$\\
+   \hline
+\end{tabular}
+\caption{ Hotelling's Test for the whole sample}\label{tab7}
+\end{table}
+
+Tables \ref{8} and \ref{9} show the$ Hotelling's~T^2$ for the two sub-samples. We can see both of them reject the null hypothesis and imply that there exist at least an intercept to be non-zero.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllllll}
+  \hline
+&DF&Hotelling-Lawley&approx F & num DF & den DF &$p$-valye\\
+\hline
+Intercept&1&16218&  1375832 &     6  &  509& $< 2.2e-16$\\
+Mkr-RF&1&407200 &34544137   &   6  &  509&$ < 2.2e-16$\\
+SMB&1&778970& 66082660    &  6   & 509& $< 2.2e-16$ \\
+HML&1&708331 &60090093&      6 &   509&$ < 2.2e-16$\\
+   \hline
+\end{tabular}
+\caption{ Hotelling's Test for the first sub-sample sample}\label{tab8}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllllll}
+  \hline
+&DF&Hotelling-Lawley&approx F & num DF & den DF &$p$-valye\\
+\hline
+Intercept&1&11812&  1002034 &     6  &  509& $< 2.2e-16$\\
+Mkr-RF&1&112220  &9519990   &   6  &  509&$ < 2.2e-16$\\
+SMB&1&635060 &53874216    &  6   & 509& $< 2.2e-16$ \\
+HML&1&506390 &42958768&      6 &   509&$ < 2.2e-16$\\
+   \hline
+\end{tabular}
+\caption{ Hotelling's Test for the second sub-sample sample}\label{tab9}
+\end{table}
+
+\subsection{Question 1 (e)}
+
+Figure \ref{JT} provides the results of Johansen's test. We know from it that the null hypothesis test $r\leq 5$ is rejected. Therefore we know the number of cointegrating relationships is at least 6.
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{JT.png}
+\caption{ Johansen's test}
+\label{JT}
+\end{figure}
+
+\section{Solution of Question 2}
+\subsection{Question 2 (a)}
+Consider invest $1$ Rupee for each foreign currency (USD, GBP and EUR). Total portfolio return on each day should be computed as a weighted sum of returns from each active trade (weighted by current value of each trade). The risk free rate is assumed to be $3\%$. The daily risk free rate is $\frac{0.003}{252}$. Annualized Sharpe ratio is 
+\[
+\text{Sharpe ratio}=\frac{E(R)-r_f}{\sigma}\times \sqrt{252}
+\]
+where $r_f$ denotes the risk free rate and $E(R)$ and $\sigma$ are expectation and standard deviation of returns. They will be estimated by sample mean and sample standard deviation of returns. 
+
+The portfolio PNL is calculated as total profit or loss weighted by total value of each foreign currency.
+\subsubsection{Rule 1: Moving average trading rules }
+Table \ref{MA_notc} present Sharpe ratio and PNL without transaction cost by moving average trading rules for different L. From it we know the optimal L is 240.
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccc}
+  \hline
+ L & Sharpe Ratio & PNL \\ 
+  \hline
+20 & 0.1116 & 0.0134 \\ 
+ 30 & 0.5984 & 0.0240 \\ 
+ 40 & -0.0640 & -0.0049 \\ 
+ 50 & 0.6583 & 0.0249 \\ 
+ 60 & 0.6574 & 0.0204 \\ 
+ 70 & 1.0205 & 0.0181 \\ 
+ 80 & -0.3709 & -0.0290 \\ 
+ 90 & -1.1743 & -0.0581 \\ 
+ 100 & -1.0006 & -0.0439 \\ 
+ 110 & -1.1057 & -0.0515 \\ 
+ 120 & -0.7838 & -0.0370 \\ 
+ 130 & -0.8369 & -0.0341 \\ 
+  140 & 0.9164 & 0.0191 \\ 
+ 150 & 0.9035 & 0.0056 \\ 
+   160 & 0.2948 & -0.0073 \\ 
+   170 & -0.4305 & -0.0147 \\ 
+   180 & -0.3062 & -0.0095 \\ 
+  190 & 0.7776 & 0.0153 \\ 
+ 200 & 0.4753 & 0.0057 \\ 
+ 210 & 0.5082 & 0.0115 \\ 
+  220 & 0.2258 & 0.0077 \\ 
+ 230 & 1.0789 & 0.0289 \\ 
+   240 & 2.0719 & 0.0558 \\ 
+ 250& 1.4772 & 0.0384 \\ 
+ 260 & -0.0604 & 0.0035 \\ 
+   270 & 0.2389 & 0.0088 \\ 
+   280 & -0.0323 & 0.0065 \\ 
+ 290 & -0.3129 & -0.0012 \\ 
+ 300 & 0.4374 & 0.0108 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by moving average trading rules for different L}\label{MA_notc}
+\end{table}
+
+Assume the traded cost is $0.0015$ for each dollar and each transaction. If we take transaction cost into consideration, Sharpe ratio and PNL get smaller. Table \ref{MA_tc} presents Sharpe ratio and PNL with traded cost by moving average trading rules for different L. It can be seen that the optimal L is still 240.
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccc}
+  \hline
+ L & Sharpe Ratio & PNL \\ 
+   \hline
+20 & -1.2781 & -0.0694 \\ 
+     30 & -0.8339 & -0.0486 \\ 
+     40 & -1.4089 & -0.0612 \\ 
+     50 & -0.4178 & -0.0280 \\ 
+     60 & -0.4012 & -0.0278 \\ 
+     70 & -0.0524 & -0.0251 \\ 
+     80 & -1.3855 & -0.0626 \\ 
+     90 & -1.9707 & -0.0844 \\ 
+    100 & -1.7383 & -0.0707 \\ 
+    110 & -1.8627 & -0.0749 \\ 
+    120 & -1.5175 & -0.0577 \\ 
+    130 & -1.5777 & -0.0556 \\ 
+    140 & 0.0775 & -0.0077 \\ 
+    150 & -0.0806 & -0.0210 \\ 
+    160 & -0.7590 & -0.0292 \\ 
+    170 & -1.5540 & -0.0356 \\ 
+    180 & -1.3205 & -0.0279 \\ 
+    190 & -0.2684 & -0.0055 \\ 
+    200 & -0.4333 & -0.0150 \\ 
+    210 & -0.4626 & -0.0128 \\ 
+    220 & -0.7083 & -0.0149 \\ 
+    230 & 0.1341 & 0.0053 \\ 
+    240 & 1.0427 & 0.0295 \\ 
+    250 & 0.3743 & 0.0137 \\ 
+    260 & -1.0112 & -0.0158 \\ 
+    270 & -0.6714 & -0.0116 \\ 
+    280 & -0.9372 & -0.0109 \\ 
+    290 & -1.2051 & -0.0182 \\ 
+    300 & -0.4010 & -0.0060 \\ 
+   \hline
+
+\end{tabular}
+\caption{Sharpe ratio and PNL with traded cost by moving average trading rules for different L}\label{MA_tc}
+\end{table}
+\subsubsection{Rule 2: Bollinger band}
+Table \ref{BB_notc} presents Sharpe ratio and PNL without traded cost by Bollinger band trading rules for different L. We can see that the optimal L is 300 if we use Sharpe ratio to evaluate them and the optimal L is 170 if we use PNL.
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccc}
+  \hline
+ L & Sharpe Ratio & PNL \\ 
+  \hline
+20 & -1.8656 & -0.0519 \\ 
+     30 & -3.4376 & -0.0617 \\ 
+     40 & 0.5175 & -0.0116 \\ 
+     50 & -3.9879 & -0.0601 \\ 
+     60 & -3.2344 & -0.0766 \\ 
+     70 & -1.2513 & -0.0459 \\ 
+     80 & -0.7048 & -0.0353 \\ 
+     90 & -1.0659 & -0.0180 \\ 
+    100 & -0.5882 & -0.0136 \\ 
+    110 & 0.8013 & -0.0002 \\ 
+    120 & -1.5621 & -0.0209 \\ 
+    130 & -1.3795 & -0.0196 \\ 
+    140 & 2.4326 & 0.0287 \\ 
+    150 & 2.2655 & 0.0237 \\ 
+    160 & 2.7861 & 0.0311 \\ 
+    170 & 3.7938 & 0.0433 \\ 
+    180 & 0.6632 & 0.0047 \\ 
+    190 & -3.7767 & -0.0228 \\ 
+    200 & -4.8494 & -0.0319 \\ 
+    210 & -5.0328 & -0.0336 \\ 
+    220 & -3.5816 & -0.0256 \\ 
+    230 & -3.2860 & -0.0229 \\ 
+    240 & -4.5120 & -0.0289 \\ 
+    250 & -4.1469 & -0.0259 \\ 
+    260 & -3.4462 & -0.0205 \\ 
+    270 & -2.9081 & -0.0167 \\ 
+    280 & -2.3767 & -0.0127 \\ 
+    290 & 0.2460 & 0.0025 \\ 
+    300 & 4.6106 & 0.0225 \\ 
+
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by Bollinger band trading rules for different L}\label{BB_notc}
+\end{table}
+
+If we take transaction costs into consideration, the optimal Ls are 300 and 170 by Sharpe ratio and PNL.
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccc}
+  \hline
+ L & Sharpe Ratio & PNL \\ 
+  \hline
+
+   20 & -2.3021 & -0.0637 \\ 
+     30 & -4.0134 & -0.0692 \\ 
+     40 & 0.0909 & -0.0186 \\ 
+     50 & -4.4093 & -0.0650 \\ 
+     60 & -3.5989 & -0.0804 \\ 
+     70 & -1.6344 & -0.0498 \\ 
+     80 & -1.0623 & -0.0393 \\ 
+     90 & -1.3500 & -0.0209 \\ 
+    100 & -0.8797 & -0.0165 \\ 
+    110 & 0.5059 & -0.0032 \\ 
+    120 & -1.8103 & -0.0232 \\ 
+    130 & -1.6291 & -0.0219 \\ 
+    140 & 2.1819 & 0.0256 \\ 
+    150 & 1.9969 & 0.0206 \\ 
+    160 & 2.5375 & 0.0280 \\ 
+    170 & 3.5474 & 0.0402 \\ 
+    180 & 0.3661 & 0.0027 \\ 
+    190 & -4.0132 & -0.0243 \\ 
+    200 & -5.0706 & -0.0333 \\ 
+    210 & -5.2512 & -0.0351 \\ 
+    220 & -3.7784 & -0.0271 \\ 
+    230 & -3.4864 & -0.0244 \\ 
+    240 & -4.7379 & -0.0303 \\ 
+    250 & -4.3774 & -0.0273 \\ 
+    260 & -3.6838 & -0.0220 \\ 
+    270 & -3.1507 & -0.0182 \\ 
+    280 & -2.6310 & -0.0142 \\ 
+    290 & -0.0410 & 0.0010 \\ 
+    300 & 4.4004 & 0.0214 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL with traded cost by Bollinger band trading rules for different L}\label{BB_tc}
+\end{table}
+\subsubsection{Rule 3: Resistance-Support}
+The momentum based Resistance-Support rule is
+\begin{eqnarray*}
+\text{Buy}& \text{if}& p_t>\max_{0<i\leq L} p_{t-i}\\
+\text{Sell}& \text{if}& p_t<\min_{0<i\leq L} p_{t-i}
+\end{eqnarray*}
+The contrarian one is
+\begin{eqnarray*}
+\text{Sell}& \text{if}& p_t>\max_{0<i\leq L} p_{t-i}\\
+\text{Buy}& \text{if}& p_t<\min_{0<i\leq L} p_{t-i}
+\end{eqnarray*}
+
+We try both momentum based Resistance -Support trading rules and contrarian one. Table \ref{RS_notc_mom} presents Sharpe ratio and PNL without traded cost by momentum based Resistance-Support band trading rules for different L. After L=210, no trade will happen if we use this rule. It can be seen that the optimal L is 70 by Sharpe ratio and PNL. The maximum Sharpe ratio is 9.3148 and maximum PNL is 0.0852.
+
+If we take the transaction cost into consideration, the optimal L is sill 70 by both Sharpe ratio and PNL (See Table \ref{RS_tc_mom}). The maximum Sharpe ratio is 8.9654 and maximum PNL is 0.0840.
+
+Table \ref{RS_notc_con} presents Sharpe ratio and PNL with traded cost by momentum based Resistance-Support band trading rules for different L. The optimal L is 160 by Sharpe ratio and 20 by PNL. The maximum Sharpe ratio is 4.0199 and maximum PNL is 0.048. 
+
+If we take transaction costs into consideration, the optimal L is 160 by Shape ratio and 20 by PNL. the maximum Sharpe ratio is 3.9904 and maximum PNL is 0.0394 (See Table \ref{RS_tc_con}).
+
+Compare momentum based Resistance-Support and contrarian Resistance -Support rules, we know that we may have higher profit and Sharpe ratio by using the former one. In other words, the former one is more profitable.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+L & Sharpe Ratio & PNL \\ 
+  \hline
+   20 & 1.7529 & 0.0320 \\ 
+     30 & 1.9483 & 0.0430 \\ 
+     40 & 2.3878 & 0.0486 \\ 
+     50 & 4.2326 & 0.0483 \\ 
+     60 & 7.3989 & 0.0588 \\ 
+     70 & 9.3148 & 0.0852 \\ 
+     80 & 7.0462 & 0.0775 \\ 
+     90 & 5.2266 & 0.0692 \\ 
+    100 & 0.7631 & 0.0537 \\ 
+    110 & -1.7926 & 0.0463 \\ 
+    120 & -3.1405 & 0.0446 \\ 
+    130 & -5.0072 & 0.0428 \\ 
+    140 & -7.4831 & 0.0352 \\ 
+    150 & -7.9710 & 0.0352 \\ 
+    160 & -10.8886 & 0.0349 \\ 
+    170 & -12.5160 & 0.0385 \\ 
+    180 & -12.6565 & 0.0385 \\ 
+    190 & -41.1730 & 0.0385 \\ 
+    200 & -59.2593 & 0.0356 \\ 
+    210 & -82.1055 & 0.0335 \\  
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by momentum based Resistance-Support band trading rules for different L}\label{RS_notc_mom}
+\end{table}
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+1 & 2 & 3 \\ 
+  \hline
+   20 & 1.1859 & 0.0246 \\ 
+     30 & 1.4378 & 0.0382 \\ 
+     40 & 1.9945 & 0.0454 \\ 
+     50 & 3.8894 & 0.0455 \\ 
+     60 & 7.0419 & 0.0568 \\ 
+     70 & 8.9654 & 0.0840 \\ 
+     80 & 6.6805 & 0.0764 \\ 
+     90 & 4.8266 & 0.0681 \\ 
+    100 & 0.3304 & 0.0527 \\ 
+    110 & -2.2444 & 0.0454 \\ 
+    120 & -3.5821 & 0.0437 \\ 
+    130 & -5.4631 & 0.0419 \\ 
+    140 & -7.9348 & 0.0344 \\ 
+    150 & -8.4463 & 0.0344 \\ 
+    160 & -11.4056 & 0.0340 \\ 
+    170 & -12.9067 & 0.0381 \\ 
+    180 & -13.2791 & 0.0381 \\ 
+    190 & -42.5340 & 0.0381 \\ 
+    200 & -61.0939 & 0.0352 \\ 
+    210 & -84.5901 & 0.0331 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL with traded cost by momentum based Resistance-Support band trading rules for different L}\label{RS_tc_mom}
+\end{table}
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+L & Sharpe ratio & PNL \\ 
+  \hline
+   20 & 0.3372 & 0.0480 \\ 
+     30 & -0.0188 & 0.0373 \\ 
+     40 & 0.9496 & 0.0330 \\ 
+     50 & 0.1938 & 0.0325 \\ 
+     60 & -3.8661 & 0.0219 \\ 
+     70 & -4.6292 & 0.0065 \\ 
+     80 & -3.1827 & 0.0072 \\ 
+     90 & -2.2832 & 0.0077 \\ 
+    100 & -0.6554 & 0.0127 \\ 
+    110 & 1.0793 & 0.0208 \\ 
+    120 & 1.4004 & 0.0223 \\ 
+    130 & 2.7693 & 0.0237 \\ 
+    140 & 4.0199 & 0.0305 \\ 
+    150 & 3.2423 & 0.0305 \\ 
+    160 & 4.2566 & 0.0305 \\ 
+    170 & 3.6921 & 0.0129 \\ 
+    180 & 0.7118 & 0.0129 \\ 
+    190 & 1.7854 & 0.0129 \\ 
+    200 & 1.8313 & 0.0129 \\ 
+    210 & 1.8313 & 0.0129 \\ 
+    220 & -3.4340 & 0.0129 \\ 
+    230 & -3.3554 & 0.0129 \\ 
+    240 & -3.0124 & 0.0129 \\ 
+    250 & -2.1544 & 0.0129 \\ 
+    260 & -1.6660 & 0.0154 \\ 
+    270 & -0.3887 & 0.0222 \\ 
+    280 & 0.6677 & 0.0259 \\ 
+    290 & 1.8501 & 0.0283 \\ 
+    300 & 1.8501 & 0.0283 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by contrarian Resistance-Support band trading rules for different L}\label{RS_notc_con}
+\end{table}
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+L & Sharpe ratio & PNL \\ 
+  \hline
+   20 & -0.2749 & 0.0394 \\ 
+     30 & -0.5742 & 0.0327 \\ 
+     40 & 0.5008 & 0.0302 \\ 
+     50 & -0.2343 & 0.0300 \\ 
+     60 & -4.2015 & 0.0205 \\ 
+     70 & -4.9832 & 0.0059 \\ 
+     80 & -3.5188 & 0.0065 \\ 
+     90 & -2.6194 & 0.0071 \\ 
+    100 & -0.9805 & 0.0120 \\ 
+    110 & 0.7475 & 0.0201 \\ 
+    120 & 1.0641 & 0.0216 \\ 
+    130 & 2.4411 & 0.0230 \\ 
+    140 & 3.6962 & 0.0297 \\ 
+    150 & 2.9585 & 0.0297 \\ 
+    160 & 3.9904 & 0.0297 \\ 
+    170 & 3.4344 & 0.0126 \\ 
+    180 & 0.4996 & 0.0126 \\ 
+    190 & 1.5928 & 0.0126 \\ 
+    200 & 1.6396 & 0.0126 \\ 
+    210 & 1.6396 & 0.0126 \\ 
+    220 & -3.6318 & 0.0126 \\ 
+    230 & -3.5541 & 0.0126 \\ 
+    240 & -3.2143 & 0.0126 \\ 
+    250 & -2.3628 & 0.0126 \\ 
+    260 & -1.8811 & 0.0150 \\ 
+    270 & -0.6224 & 0.0218 \\ 
+    280 & 0.4295 & 0.0255 \\ 
+    290 & 1.6281 & 0.0279 \\ 
+    300 & 1.6281 & 0.0279 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL with traded cost by contrarian Resistance-Support band trading rules for different L}\label{RS_tc_con}
+\end{table}
+
+\subsubsection{Rule 4: Momentum}
+In order to find out the optimal n and m, we try different combinations of n and m and find out the maximum Sharpe ratio and PNL. We choose n from 50 to 300 and step size is 50. Within each n, m starts from 20 and stops at $n-10$. Table \ref{mom_notc} present Sharpe ratio and PNL without traded cost by mommentum trading rules for different n and m. It can be seen that when $n=150$ and $n=60$, we have maximum Sharpe ratio, which is 11.2263; when $n=100$ and $m=70$, we have maximum PNL, which is 0.1354.
+
+If we take transaction cost into consideration,  when $n=150$ and $n=60$, we have maximum Sharpe ratio, which is 10.7455 and $n=100$ and $m=70$, we have maximum PNL, which is 0.1279 (see Table \ref{mom_tc}).
+
+\begin{center}
+\begin{longtable}{cccc}
+%\begin{tabular}{rrrr}
+  \hline
+n & m & Sharpe Ratio & PNL \\ 
+  \hline
+   50 &    20 & 1.5364 & 0.0484 \\ 
+     50 &    30 & -0.2655 & -0.0153 \\ 
+     50 &    40 & -2.0290 & -0.0735 \\ 
+    100 &    20 & 1.0822 & 0.0107 \\ 
+    100 &    30 & 1.0448 & 0.0093 \\ 
+    100 &    40 & 3.7536 & 0.0573 \\ 
+    100 &    50 & 5.3653 & 0.0716 \\ 
+    100 &    60 & 7.8864 & 0.1099 \\ 
+    100 &    70 & 8.2284 & 0.1354 \\ 
+    100 &    80 & 7.8399 & 0.1264 \\ 
+    100 &    90 & 4.1028 & 0.0957 \\ 
+    150 &    20 & -0.4437 & -0.0092 \\ 
+    150 &    30 & -3.4022 & -0.0505 \\ 
+    150 &    40 & 0.2454 & -0.0027 \\ 
+    150 &    50 & 10.1229 & 0.1295 \\ 
+    150 &    60 & 11.2263 & 0.0953 \\ 
+    150 &    70 & 8.0280 & 0.0602 \\ 
+    150 &    80 & 4.7527 & 0.0409 \\ 
+    150 &    90 & -1.3210 & -0.0146 \\ 
+    150 &   100 & -1.8817 & -0.0177 \\ 
+    150 &   110 & -4.8096 & -0.0406 \\ 
+    150 &   120 & -3.7682 & -0.0345 \\ 
+    150 &   130 & -2.6243 & -0.0293 \\ 
+    150 &   140 & -2.7130 & -0.0284 \\ 
+    200 &    20 & -3.5009 & -0.0467 \\ 
+    200 &    30 & -5.7140 & -0.0540 \\ 
+    200 &    40 & -0.7551 & -0.0072 \\ 
+    200 &    50 & 1.1353 & 0.0062 \\ 
+    200 &    60 & 0.5498 & 0.0026 \\ 
+    200 &    70 & -1.7540 & -0.0160 \\ 
+    200 &    80 & -2.4286 & -0.0186 \\ 
+    200 &    90 & -3.2309 & -0.0257 \\ 
+    200 &   100 & -5.5230 & -0.0377 \\ 
+    200 &   110 & -7.1806 & -0.0457 \\ 
+    200 &   120 & -0.8103 & -0.0103 \\ 
+    200 &   130 & -3.1002 & -0.0286 \\ 
+    200 &   140 & -3.5976 & -0.0323 \\ 
+    200 &   150 & -7.2386 & -0.0608 \\ 
+    200 &   160 & -12.2753 & -0.0918 \\ 
+    200 &   170 & -10.1912 & -0.0807 \\ 
+    200 &   180 & -5.1297 & -0.0782 \\ 
+    200 &   190 & -3.5909 & -0.0655 \\ 
+    250 &    20 & -7.9770 & -0.0747 \\ 
+    250 &    30 & -7.7369 & -0.0566 \\ 
+    250 &    40 & -9.3183 & -0.0602 \\ 
+    250 &    50 & -5.1252 & -0.0285 \\ 
+    250 &    60 & -4.0150 & -0.0166 \\ 
+    250 &    70 & -5.2783 & -0.0437 \\ 
+    250 &    80 & -3.6593 & -0.0298 \\ 
+    250 &    90 & -3.4741 & -0.0336 \\ 
+    250 &   100 & -5.3651 & -0.0385 \\ 
+    250 &   110 & -6.8599 & -0.0576 \\ 
+    250 &   120 & -4.7295 & -0.0386 \\ 
+    250 &   130 & -5.2856 & -0.0521 \\ 
+    250 &   140 & -15.6684 & -0.0799 \\ 
+    250 &   150 & -14.4523 & -0.0810 \\ 
+    250 &   160 & -11.9718 & -0.0691 \\ 
+    250 &   170 & -9.4326 & -0.0544 \\ 
+    250 &   180 & -9.0317 & -0.0682 \\ 
+    250 &   190 & -12.6987 & -0.0574 \\ 
+    250 &   200 & -11.1140 & -0.0524 \\ 
+    250 &   210 & -17.3612 & -0.0809 \\ 
+    250 &   220 & -5.8557 & -0.0587 \\ 
+    250 &   230 & -2.1931 & -0.0316 \\ 
+    250 &   240 & -0.5611 & -0.0096 \\ 
+    300 &    20 & -21.0153 & -0.0959 \\ 
+    300 &    30 & -15.3757 & -0.1095 \\ 
+    300 &    40 & -21.4949 & -0.0879 \\ 
+    300 &    50 & -20.2495 & -0.0857 \\ 
+    300 &    60 & -25.9661 & -0.0795 \\ 
+    300 &    70 & -26.6696 & -0.0735 \\ 
+    300 &    80 & -23.8088 & -0.0755 \\ 
+    300 &    90 & -22.4488 & -0.0716 \\ 
+    300 &   100 & -12.0100 & -0.0507 \\ 
+    300 &   110 & -72.6691 & -0.0761 \\ 
+    300 &   120 & -24.2938 & -0.0869 \\ 
+    300 &   130 & -22.1292 & -0.0921 \\ 
+    300 &   140 & -29.8219 & -0.0931 \\ 
+    300 &   150 & -19.5291 & -0.0845 \\ 
+    300 &   160 & -27.9434 & -0.0767 \\ 
+    300 &   170 & -26.8193 & -0.0809 \\ 
+    300 &   180 & -43.2211 & -0.1223 \\ 
+    300 &   190 & -50.2584 & -0.1329 \\ 
+    300 &   200 & -55.9479 & -0.1220 \\ 
+    300 &   210 & -45.9631 & -0.1153 \\ 
+    300 &   220 & -38.6809 & -0.0968 \\ 
+    300 &   230 & -19.4599 & -0.0787 \\ 
+    300 &   240 & -8.0795 & -0.0848 \\ 
+    300 &   250 & -18.3195 & -0.1164 \\ 
+    300 &   260 & -6.4151 & -0.0742 \\ 
+    300 &   270 & -5.6704 & -0.0648 \\ 
+    300 &   280 & -11.9127 & -0.1140 \\ 
+    300 &   290 & -6.1151 & -0.0929 \\ 
+   \hline
+%\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by momentum trading rules for different m and n}\label{mom_notc}
+\end{longtable}
+\end{center}
+\begin{center}
+\begin{longtable}{cccc}
+%\begin{tabular}{rrrr}
+  \hline
+n & m & Sharpe Ratio & PNL \\  
+  \hline
+   50 &    20 & 1.0319 & 0.0315 \\ 
+     50 &    30 & -0.7910 & -0.0301 \\ 
+     50 &    40 & -2.5815 & -0.0902 \\ 
+    100 &    20 & 0.6223 & 0.0030 \\ 
+    100 &    30 & 0.5677 & 0.0022 \\ 
+    100 &    40 & 3.2352 & 0.0494 \\ 
+    100 &    50 & 4.9465 & 0.0658 \\ 
+    100 &    60 & 7.4660 & 0.1039 \\ 
+    100 &    70 & 7.8243 & 0.1279 \\ 
+    100 &    80 & 7.3211 & 0.1173 \\ 
+    100 &    90 & 3.6373 & 0.0844 \\ 
+    150 &    20 & -0.9761 & -0.0159 \\ 
+    150 &    30 & -3.8737 & -0.0564 \\ 
+    150 &    40 & -0.2306 & -0.0089 \\ 
+    150 &    50 & 9.7554 & 0.1243 \\ 
+    150 &    60 & 10.7455 & 0.0908 \\ 
+    150 &    70 & 7.4277 & 0.0553 \\ 
+    150 &    80 & 4.2667 & 0.0361 \\ 
+    150 &    90 & -1.7712 & -0.0188 \\ 
+    150 &   100 & -2.3970 & -0.0220 \\ 
+    150 &   110 & -5.3313 & -0.0446 \\ 
+    150 &   120 & -4.2962 & -0.0390 \\ 
+    150 &   130 & -3.2023 & -0.0356 \\ 
+    150 &   140 & -3.4505 & -0.0364 \\ 
+    200 &    20 & -3.9901 & -0.0522 \\ 
+    200 &    30 & -6.2492 & -0.0585 \\ 
+    200 &    40 & -1.3581 & -0.0116 \\ 
+    200 &    50 & 0.6257 & 0.0022 \\ 
+    200 &    60 & -0.0049 & -0.0013 \\ 
+    200 &    70 & -2.2554 & -0.0199 \\ 
+    200 &    80 & -2.9544 & -0.0225 \\ 
+    200 &    90 & -3.7785 & -0.0295 \\ 
+    200 &   100 & -6.1300 & -0.0415 \\ 
+    200 &   110 & -7.7501 & -0.0491 \\ 
+    200 &   120 & -1.2267 & -0.0137 \\ 
+    200 &   130 & -3.5073 & -0.0319 \\ 
+    200 &   140 & -4.0005 & -0.0355 \\ 
+    200 &   150 & -7.5960 & -0.0636 \\ 
+    200 &   160 & -12.8102 & -0.0954 \\ 
+    200 &   170 & -10.7112 & -0.0843 \\ 
+    200 &   180 & -5.4894 & -0.0828 \\ 
+    200 &   190 & -4.0154 & -0.0718 \\ 
+    250 &    20 & -8.5957 & -0.0807 \\ 
+    250 &    30 & -8.2635 & -0.0606 \\ 
+    250 &    40 & -9.8610 & -0.0634 \\ 
+    250 &    50 & -5.7575 & -0.0314 \\ 
+    250 &    60 & -4.6876 & -0.0195 \\ 
+    250 &    70 & -5.7902 & -0.0475 \\ 
+    250 &    80 & -4.1906 & -0.0336 \\ 
+    250 &    90 & -3.9430 & -0.0374 \\ 
+    250 &   100 & -5.8852 & -0.0418 \\ 
+    250 &   110 & -7.2334 & -0.0605 \\ 
+    250 &   120 & -5.1144 & -0.0415 \\ 
+    250 &   130 & -5.5953 & -0.0549 \\ 
+    250 &   140 & -16.1696 & -0.0822 \\ 
+    250 &   150 & -14.9133 & -0.0833 \\ 
+    250 &   160 & -12.4262 & -0.0714 \\ 
+    250 &   170 & -9.8856 & -0.0568 \\ 
+    250 &   180 & -9.4501 & -0.0710 \\ 
+    250 &   190 & -13.3625 & -0.0602 \\ 
+    250 &   200 & -11.7638 & -0.0553 \\ 
+    250 &   210 & -18.0202 & -0.0835 \\ 
+    250 &   220 & -6.3329 & -0.0629 \\ 
+    250 &   230 & -2.6170 & -0.0374 \\ 
+    250 &   240 & -1.0111 & -0.0167 \\ 
+    300 &    20 & -21.5611 & -0.0991 \\ 
+    300 &    30 & -15.7874 & -0.1132 \\ 
+    300 &    40 & -21.9069 & -0.0901 \\ 
+    300 &    50 & -20.6119 & -0.0877 \\ 
+    300 &    60 & -26.3586 & -0.0811 \\ 
+    300 &    70 & -27.1058 & -0.0751 \\ 
+    300 &    80 & -24.2000 & -0.0771 \\ 
+    300 &    90 & -22.8491 & -0.0732 \\ 
+    300 &   100 & -12.3263 & -0.0525 \\ 
+    300 &   110 & -73.6810 & -0.0773 \\ 
+    300 &   120 & -24.6618 & -0.0885 \\ 
+    300 &   130 & -22.4529 & -0.0938 \\ 
+    300 &   140 & -30.2538 & -0.0947 \\ 
+    300 &   150 & -20.1084 & -0.0868 \\ 
+    300 &   160 & -28.8638 & -0.0790 \\ 
+    300 &   170 & -27.6695 & -0.0832 \\ 
+    300 &   180 & -44.0777 & -0.1244 \\ 
+    300 &   190 & -51.1453 & -0.1350 \\ 
+    300 &   200 & -57.0173 & -0.1241 \\ 
+    300 &   210 & -46.8909 & -0.1175 \\ 
+    300 &   220 & -39.7322 & -0.0990 \\ 
+    300 &   230 & -20.1026 & -0.0810 \\ 
+    300 &   240 & -8.5217 & -0.0891 \\ 
+    300 &   250 & -18.8545 & -0.1193 \\ 
+    300 &   260 & -6.7529 & -0.0776 \\ 
+    300 &   270 & -6.0028 & -0.0683 \\ 
+    300 &   280 & -12.2956 & -0.1171 \\ 
+    300 &   290 & -6.5232 & -0.0983 \\ 
+   \hline
+\caption{Sharpe ratio and PNL with traded cost by momentum trading rules for different m and n}\label{mom_tc}
+\end{longtable}
+\end{center}
+
+\subsection{Question 2 (b)}
+
+Table \ref{rsi_notc} presents Sharpe ratio and PNL without traded cost by Oscillator trading rules for different L. From it we can see the optimal L is 220 by both Sharpe ratio and PNL. The maximum Sharpe ratio is 3.4372 and maximum PNL is 0.0994.
+
+If we take transaction costs into consideration, the optimal L is 220 by Sharpe ratio and 170 by PNL (see Table \ref{rsi_tc}).
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+L & Sharpe Ratio & PNL \\ 
+  \hline
+   20 & -0.8231 & -0.0555 \\ 
+     30 & 0.0049 & -0.0040 \\ 
+     40 & 1.0455 & 0.0505 \\ 
+     50 & 1.3107 & 0.0538 \\ 
+     60 & 0.7123 & 0.0300 \\ 
+     70 & -1.2078 & -0.0441 \\ 
+     80 & -0.8570 & -0.0321 \\ 
+     90 & -0.6341 & -0.0219 \\ 
+    100 & -0.2510 & -0.0177 \\ 
+    110 & -0.6694 & -0.0420 \\ 
+    120 & 0.4764 & 0.0070 \\ 
+    130 & 1.4910 & 0.0425 \\ 
+    140 & 0.5396 & 0.0080 \\ 
+    150 & 2.5242 & 0.0583 \\ 
+    160 & -0.0490 & -0.0053 \\ 
+    170 & 3.3663 & 0.0932 \\ 
+    180 & 2.2760 & 0.0713 \\ 
+    190 & 1.2524 & 0.0378 \\ 
+    200 & 2.7928 & 0.0759 \\ 
+    210 & 2.0144 & 0.0663 \\ 
+    220 & 3.4372 & 0.0994 \\ 
+    230 & 2.3383 & 0.0641 \\ 
+    240 & -0.5109 & -0.0144 \\ 
+    250 & 0.0447 & -0.0114 \\ 
+    260 & 1.3115 & 0.0336 \\ 
+    270 & 1.9253 & 0.0515 \\ 
+    280 & 1.6127 & 0.0458 \\ 
+    290 & -0.4933 & -0.0014 \\ 
+    300 & 2.5920 & 0.0427 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without traded cost by Oscillator trading rules for different L}\label{rsi_notc}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+  \hline
+L & Sharpe Ratio & PNL \\ 
+  \hline
+   20 & -2.1732 & -0.1211 \\ 
+     30 & -1.1067 & -0.0597 \\ 
+     40 & 0.0952 & 0.0019 \\ 
+     50 & 0.4085 & 0.0106 \\ 
+     60 & -0.2640 & -0.0136 \\ 
+     70 & -1.9887 & -0.0722 \\ 
+     80 & -1.7160 & -0.0626 \\ 
+     90 & -1.3670 & -0.0460 \\ 
+    100 & -1.0085 & -0.0402 \\ 
+    110 & -1.3665 & -0.0619 \\ 
+    120 & -0.2806 & -0.0127 \\ 
+    130 & 0.6052 & 0.0162 \\ 
+    140 & -0.3834 & -0.0149 \\ 
+    150 & 1.4010 & 0.0359 \\ 
+    160 & -0.8558 & -0.0218 \\ 
+    170 & 2.5089 & 0.0748 \\ 
+    180 & 1.3204 & 0.0449 \\ 
+    190 & 0.4763 & 0.0200 \\ 
+    200 & 2.0317 & 0.0550 \\ 
+    210 & 1.0061 & 0.0415 \\ 
+    220 & 2.5467 & 0.0726 \\ 
+    230 & 1.3863 & 0.0402 \\ 
+    240 & -1.4893 & -0.0321 \\ 
+    250 & -0.7726 & -0.0255 \\ 
+    260 & 0.6143 & 0.0193 \\ 
+    270 & 1.2251 & 0.0357 \\ 
+    280 & 1.0064 & 0.0339 \\ 
+    290 & -1.2141 & -0.0113 \\ 
+    300 & 1.5483 & 0.0278 \\ 
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL with traded cost by Oscillator trading rules for different L}\label{rsi_tc}
+\end{table}
+
+\section{Solution of Question 3}
+In this question, we want to develop a pairs trading strategy and check if it does any better than the strategies in Problem 2. We follow the strategy described on page 2-4 in Engleberg et al (2009). 
+
+Following Engleberg et al (2009), we identify the universe of eligible pairs using return data for all three currencies during the immediately preceding 3 month "estimation period" at the end of each calendar month, $m$.  We assume invest 1 Rupee for each foreign currency and normalized each foreign exchange rate. The normalized foreign exchange rate  for currency $i$ is
+\[
+FX_t^i =\prod_{i=1}^t(1+r_t^i)
+\]
+where $r_t^i$ the ratio of current foreign exchange rate and the one of preceding day.
+
+For each calendar month, we compute the average squared normalized exchange rate difference measure $FXD_{i,j,m}$ between exchange rate $i$ and $j$, for each pair of exchange rate we have
+\[
+FXD_{i,j,m}=\frac{\sum_{t=1}^{T_m}(FX_{t}^i-FX_{t}^j)^2}{T_m}
+\]
+where $T_m$ is the total number of trading days in the estimation period for calender month $m$, $FX_{t}^i$ and $FX_t^{j}$ are the normalized exchange rate for foreign currency $i$ and $j$ respectively on trading day $t$ in the estimation period. The standard deviation of the wquared normalized exchange rate differences is given by
+\[
+StdFX_{i,j,m}=\sqrt{\frac{1}{T_m-1}\sum_{t=1}{T_m}\left [(FX_t^i-FX_t^j)^2-FX_{i,j,m}\right]^2}
+\]
+
+For each calender month $m$, we identify 1 pair that have the smallest average normalized exchange rate difference during its estimation period. This pair will be "eligible" for investment during the following 3 months "eligibility period" immediately following calendar month $m$. Our trading rule is: if the exchange rate in the eligible pair diverge by more than $2\times StdFX_{i,j,m}$ then we buy the "cheap" currency and sell the "expensive" one. If the pair later convergence, i.e., when their normalized prices cross for the first time after divergence, we unwind the position and wait for the pair to diverge again. If the pair diverges but does not converge within 2 month, we close the position and call this "no convergence". In summary, each cycle contains three periods (8 months): estimation (3 months), eligibility (3 months) and convergence (2 months). Furthermore, for our convenience we assume there are 21 trading days in each month. 
+
+Table \ref{pair} presents the trading results with and without transaction cost. From it we know we have Sharpe ratio 3.5013 if we do not consider transaction cost and PNL is 0.0682. However, if we take the trading cost into consideration, the Sharpe ratio is 2.3654 and PNL is 0.0523. 
+
+Furthermore, Figure \ref{trade_threshold} shows the foreign exchange divergence and threshold. During the 48 months period, we traded 10 times. We unwind the position for 6 times and close the position 4 times because of not converging. 
+\begin{table}
+\centering
+\begin{tabular}{ccc}
+  \hline
+& Sharpe Ratio & PNL \\ 
+  \hline
+Without transaction cost& 3.5013 &  0.0682\\
+With transaction cost&2.3654&0.0523\\
+   \hline
+\end{tabular}
+\caption{Sharpe ratio and PNL without / with traded cost by pair trading rules}\label{pair}
+\end{table}
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{trade_threshold.pdf}
+\caption{ Foreign exchange divergence and threshold}
+\label{trade_threshold}
+\end{figure}
+
+\end{document}

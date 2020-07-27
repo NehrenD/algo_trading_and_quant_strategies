@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx, epstopdf}
+\usepackage{color}
+
+\oddsidemargin -.2in
+%\evensidemargin -1in
+\textwidth 7in
+\topmargin -0.5in
+\textheight 8.5in
+
+\title{FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies\\\vspace{5mm}Assignment 4\\\vspace{10mm}Due: March 31, 2014}
+\date{}
+\begin{document}
+\maketitle
+
+%Instructions:
+%\begin{itemize}
+%\itemsep 3mm
+%\item This assignment can be done individually or in a team of two.
+%\item Attach only the relevant R code with clear narratives
+%\end{itemize}
+
+\vspace{5mm}
+%Data files:
+%\begin{itemize}
+%\item The file {\tt d\_15stocks.csv} and {\tt m\_15stocks.csv} contain daily and monthly stock returns data for 15 stocks from Jan 11, 2000 to Mar 31, 2013.
+%\item The file {\tt d\_indexes.csv} and {\tt m\_indexes.csv} contain daily and monthly returns data for the volume-weighted and equal-weighted S\&P500 market indices (VWRETD and EWRETD, respectively) from Jan 11, 2000 to Mar 31, 2013.
+%\item The file {\tt 224200801.csv} contains the daily value of the S\&P500 index from Jan 11, 2000 to Dec 30, 2005. You may need to extract a subset of this data to match the set of dates available in {\tt d\_logret\_16stocks.txt}
+%\item To calculate the value-weighted index, you may need the prices of the stocks. Please obtain the adjusted prices of the stocks on Jan 10, 2000 from Yahoo Finance and then calculate the stock prices on subsequent days using the available stock returns. The 16 stock tickers in {\tt d\_logret\_16stocks.txt} are AIG, AXP, T, BA, DIS, DD, GM, HD, HPQ, IBM, JPM, MCD, MRK, MSFT, VZ, WMT. For example, you can obtain the AIG stock price on Jan 10, 2000 here: 
+%
+%{\tt http://finance.yahoo.com/q/hp?s=AIG\&a=00\&b=10\&c=2000\&d=00\&e=10\&f=2000\&g=d}
+
+%\item The file {\tt d\_aapl.txt} contains the daily price of AAPL stock from Jan 3, 2003 to Jun 28, 2013.
+%
+%%\item The file {\tt FF\_Data\_ForGRStest.csv} contains historical monthly returns data for portfolios based on Fama-French factors.
+%\end{itemize}
+%\pagebreak
+\section{Problem 1}
+One of the most intriguing asset pricing anomalies in finance is so-called "price momentum effect". This homework consists of an exercise using data for sixteen stocks which will guide you through creating a momentum strategy. The goal is to replicate the price momentum strategy described in Jegadeesh and Titman (2001) using this data, albeit in a small scale.
+\subsection{Data}
+The daily returns from January 11, 2000 to November 20, 2005 for sixteen stocks are in the file \verb|d_logret_16stocks|; to this add two more columns: SP500 returns and risk free rate. 
+\subsection{Portfolio Formation}
+On the last day of each month, sort the stocks into four quartile portfolios based on the past six month cumulative returns. The first quartile contains the stocks with the lowest past six-month returns, and the fourth quartile contains the stocks with the highest past six-month returns.
+\begin{enumerate}
+\item[(a)] Start by accumulating the return of each quartile portfolio for next six months
+\item[(b)] For each month and of the four quartile portfolios, record the average portfolio returns between January 2002 and November 2005.
+\end{enumerate}
+\subsection{Questions of Interests}
+After constructing the relevant portfolios, answer the following questions. When you answer these questions, note any additional assumptions/choices you made.
+\subsubsection{Momentum strategy profits}
+\begin{enumerate}
+\item Report the monthly average returns of your quartile portfolio, as well as the winner (Q4, highest past six month return portfolios) minus losers (Q1, lowest past six month return portfolios).
+\item Report the monthly average returns of quartile portfolio for January and non-January months respectively, a well as the winner (Q4, highest past six month return portfolios) minus losers (Q1, lowest past six month return portfolios). 
+\item Using CAPM test the spreads between winner and loser portfolio (Q4-Q1). 
+\item Tabulate these results in a table similar to table I in Jegadeesh and Titman (2001).
+\item Compare  your results to the results in Jegadeesh and Titman (2001) and comment on your findings.
+\end{enumerate}
+
+\section{Problem 2}
+Consider the 30-min price bar data for Treasury Yields from June 8, 2006 to August 29, 2013. Daily data for Treasury Yields is just a snapshot at 4 pm and the total volume for the day is the sum of 30-min volumes since the previous day.
+\begin{enumerate}
+\item[(a)] Develop ARMA time series models for both daily and the 30-min volumes. We can use daily data for developing macro strategies and 30-min data for micro strategies.
+\item[(b)] Compute volatility measure, $\sigma^2_t=0.5[\ln(\frac{H_t}{L_t})]^2-0.386[\ln(\frac{C_t}{O_t})]^2$ for both levels and compare them.
+\item[(c)] Compute volatility forecasts, $\hat{\sigma}^2_{t+1}=$weighted average of $\sigma^2_t, \sigma^2_{t-1}, \ldots, \sigma^2_{t-22}$, for daily data and $\hat{\sigma}^2_{t+1\cdot m}=$ weighted average of $\sigma^2_{t\cdot m}, \ldots, \sigma^2_{t-22\cdot m}$. for $m^{th}$ 30-min interval [ In (a), you should notice strong seasonality in the 30-min data] 
+\item[(d)] Develop trading strategies that incorporate
+\begin{enumerate}
+\item price information only
+\item price and volume information and
+\item price, volume and volatility information
+\end{enumerate}
+\end{enumerate}
+[One strategy is suggested in the note posted in IVLE, but you do not have to follow!]
+
+\end{document}

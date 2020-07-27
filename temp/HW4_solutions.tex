@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{natbib}
+\usepackage{amssymb,amsmath,amsthm,bbm,amsfonts,bbm}
+\usepackage{amsfonts}
+\usepackage{CJK}
+\usepackage{graphicx}                               % Insert Pictures
+\usepackage{calrsfs}                                % Writing Script Letters
+\usepackage{dsfont,pifont}                          % Mathds Font, like "IR"
+\usepackage{indentfirst}                            % Make Indent at First of Section
+\usepackage{array,colortbl}                         % Array and Table
+\usepackage{lscape}                                 % Change a Page to Landscape
+\usepackage{bm,mathrsfs}                                     % Writing Bold Symbol
+\usepackage{titlesec,titletoc}
+\usepackage{multirow,tabularx}
+\usepackage{subfigure}
+\usepackage{tikz}               %%%%%%%%%%%%%%%%%%  add 
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{subfigure}
+\usepackage{longtable}
+\usepackage{pdfpages}
+
+%\usepackage[authoryear,nonamebreak,bibstyle]{natbib}% Reference
+%\usepackage{fourier}                                % Font
+%\usepackage{times,mathptmx}                        % Font: Times New Roman
+%\renewcommand\rmdefault{phv}                       % Font: Set Default to Arial
+%\usepackage{concmath}                              % Font
+%\usepackage{mathpazo}       
+\usepackage{booktabs,caption,fixltx2e}
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow}
+
+%\oddsidemargin -.2in
+%\evensidemargin -1in
+
+\textwidth 145mm \textheight 210mm \hoffset -1cm \voffset -1cm
+%\textwidth 7in
+%\topmargin -0.5in
+%\textheight 8.5in
+\linespread{1.6}
+%\title{FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies}
+
+%\date{}
+\begin{document}
+%\maketitle
+\textbf{\Large FE 5217: Seminar in Risk Management and Alternative Investment: Algorithmic Trading and Quantitative Strategies--Assignment 4, Solutions}
+\begin{center}
+Yin Teng\\
+A0068164B, DSAP, NUS
+\end{center}
+\section{Solutions of Problem 1}
+\subsection{Q1.1}
+Table \ref{tableq1.1} presents monthly average returns of the first quartile and fourth quartile portfolio as well as their difference. 
+\begin{longtable}{cccc}
+%\begin{tabular}{rrrr}
+  \hline
+No. of Month & First Quartile & Fourth Quartile & Difference \\ 
+\hline
+1 & -0.00361 & -0.00024 & 0.00337 \\ 
+  2 & 0.01011 & 0.00963 & -0.00048 \\ 
+  3 & -0.00404 & 0.00325 & 0.00729 \\ 
+  4 & 0.00943 & 0.01504 & 0.00561 \\ 
+  5 & -0.00850 & 0.00071 & 0.00920 \\ 
+  6 & 0.00842 & -0.00589 & -0.01431 \\ 
+  7 & 0.03199 & -0.01484 & -0.04683 \\ 
+  8 & -0.01639 & -0.00569 & 0.01070 \\ 
+  9 & -0.00853 & -0.01310 & -0.00456 \\ 
+  10 & 0.01892 & 0.02752 & 0.00860 \\ 
+  11 & 0.00311 & -0.00044 & -0.00355 \\ 
+  12 & -0.01040 & 0.00163 & 0.01202 \\ 
+  13 & 0.01294 & -0.00408 & -0.01703 \\ 
+  14 & -0.02091 & -0.02137 & -0.00046 \\ 
+  15 & -0.07065 & -0.02203 & 0.04862 \\ 
+  16 & 0.00095 & -0.01748 & -0.01843 \\ 
+  17 & 0.02304 & 0.00113 & -0.02191 \\ 
+  18 & 0.01408 & 0.00452 & -0.00956 \\ 
+  19 & 0.00370 & -0.01034 & -0.01404 \\ 
+  20 & 0.01428 & 0.00541 & -0.00887 \\ 
+  21 & 0.00490 & -0.00554 & -0.01044 \\ 
+  22 & -0.01374 & 0.00481 & 0.01855 \\ 
+  23 & 0.00483 & -0.00856 & -0.01339 \\ 
+  24 & -0.02014 & -0.01256 & 0.00759 \\ 
+  25 & -0.02063 & -0.01404 & 0.00658 \\ 
+  26 & 0.01794 & 0.00206 & -0.01588 \\ 
+  27 & 0.00018 & -0.00512 & -0.00529 \\ 
+  28 & 0.01971 & 0.02655 & 0.00684 \\ 
+  29 & 0.01762 & 0.01821 & 0.00059 \\ 
+  30 & -0.00272 & -0.00624 & -0.00352 \\ 
+  31 & -0.01146 & -0.00801 & 0.00344 \\ 
+  32 & -0.00918 & -0.01031 & -0.00113 \\ 
+  33 & 0.01191 & 0.00943 & -0.00248 \\ 
+  34 & 0.01938 & 0.01502 & -0.00436 \\ 
+  35 & 0.00788 & 0.00884 & 0.00096 \\ 
+  36 & 0.00883 & 0.00255 & -0.00628 \\ 
+  37 & 0.00304 & 0.00237 & -0.00067 \\ 
+  38 & -0.00019 & 0.00155 & 0.00174 \\ 
+  39 & -0.00097 & 0.00084 & 0.00181 \\ 
+  40 & -0.00537 & 0.01427 & 0.01964 \\ 
+  41 & 0.00084 & 0.00223 & 0.00139 \\ 
+  42 & 0.01439 & 0.01179 & -0.00260 \\ 
+  43 & 0.01048 & 0.00108 & -0.00940 \\ 
+  44 & 0.01178 & -0.00009 & -0.01187 \\ 
+  45 & -0.00942 & -0.00464 & 0.00478 \\ 
+  46 & -0.00101 & -0.01293 & -0.01192 \\ 
+  47 & 0.00411 & -0.00230 & -0.00641 \\ 
+  48 & 0.00314 & 0.00481 & 0.00167 \\ 
+  49 & 0.00132 & 0.00283 & 0.00151 \\ 
+  50 & -0.00826 & 0.00218 & 0.01043 \\ 
+  51 & 0.00592 & 0.00091 & -0.00502 \\ 
+  52 & -0.01359 & -0.00244 & 0.01115 \\ 
+  53 & 0.00888 & 0.01090 & 0.00202 \\ 
+  54 & 0.00773 & -0.00310 & -0.01083 \\ 
+  55 & -0.00992 & -0.00499 & 0.00493 \\ 
+  56 & 0.00910 & 0.00683 & -0.00227 \\ 
+  57 & -0.01648 & -0.00280 & 0.01368 \\ 
+  58 & -0.00059 & -0.00765 & -0.00706 \\ 
+  59 & 0.00912 & 0.00468 & -0.00444 \\ 
+  60 & 0.00663 & -0.00278 & -0.00941 \\ 
+  61 & 0.01284 & 0.00399 & -0.00885 \\ 
+  62 & -0.00782 & 0.00197 & 0.00979 \\ 
+  63 & -0.00204 & -0.00150 & 0.00054 \\ 
+  64 & 0.01040 & -0.00570 & -0.01610 \\ 
+  65 & 0.00572 & 0.00990 & 0.00419 \\ 
+   \hline
+%\end{tabular}
+\caption{Monthly average returns of the first quartile and fourth quartile portfolio as well as their difference}\label{tableq1.1}
+\end{longtable}
+\subsection{Q1.2}
+Table \ref{tableq1.2j} presents monthly average returns of the first quartile and fourth quartile portfolio as well as the difference for January.
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrr}
+  \hline
+ January& First Quartile &Fourth Quartile & Difference \\ 
+  \hline
+1 & 0.03199 & -0.01484 & -0.04683 \\ 
+  2 & 0.00370 & -0.01034 & -0.01404 \\ 
+  3 & -0.01146 & -0.00801 & 0.00344 \\ 
+  4 & 0.01048 & 0.00108 & -0.00940 \\ 
+  5 & -0.00992 & -0.00499 & 0.00493 \\ 
+   \hline
+\end{tabular}
+\caption{Monthly average returns of the first quartile and fourth quartile portfolio as well as the difference for January}\label{tableq1.2j}
+\end{table}
+Table \ref{tableq1.2nonj} presents monthly average returns of the first quartile and fourth quartile portfolio as well as the difference for non-January
+\begin{longtable}{cccc}
+
+  \hline
+ non-January& First Quartile & Fourth Quartile & Difference \\ 
+  \hline
+1 & -0.00361 & -0.00024 & 0.00337 \\ 
+  2 & 0.01011 & 0.00963 & -0.00048 \\ 
+  3 & -0.00404 & 0.00325 & 0.00729 \\ 
+  4 & 0.00943 & 0.01504 & 0.00561 \\ 
+  5 & -0.00850 & 0.00071 & 0.00920 \\ 
+  6 & 0.00842 & -0.00589 & -0.01431 \\ 
+  7 & -0.01639 & -0.00569 & 0.01070 \\ 
+  8 & -0.00853 & -0.01310 & -0.00456 \\ 
+  9 & 0.01892 & 0.02752 & 0.00860 \\ 
+  10 & 0.00311 & -0.00044 & -0.00355 \\ 
+  11 & -0.01040 & 0.00163 & 0.01202 \\ 
+  12 & 0.01294 & -0.00408 & -0.01703 \\ 
+  13 & -0.02091 & -0.02137 & -0.00046 \\ 
+  14 & -0.07065 & -0.02203 & 0.04862 \\ 
+  15 & 0.00095 & -0.01748 & -0.01843 \\ 
+  16 & 0.02304 & 0.00113 & -0.02191 \\ 
+  17 & 0.01408 & 0.00452 & -0.00956 \\ 
+  18 & 0.01428 & 0.00541 & -0.00887 \\ 
+  19 & 0.00490 & -0.00554 & -0.01044 \\ 
+  20 & -0.01374 & 0.00481 & 0.01855 \\ 
+  21 & 0.00483 & -0.00856 & -0.01339 \\ 
+  22 & -0.02014 & -0.01256 & 0.00759 \\ 
+  23 & -0.02063 & -0.01404 & 0.00658 \\ 
+  24 & 0.01794 & 0.00206 & -0.01588 \\ 
+  25 & 0.00018 & -0.00512 & -0.00529 \\ 
+  26 & 0.01971 & 0.02655 & 0.00684 \\ 
+  27 & 0.01762 & 0.01821 & 0.00059 \\ 
+  28 & -0.00272 & -0.00624 & -0.00352 \\ 
+  29 & -0.00918 & -0.01031 & -0.00113 \\ 
+  30 & 0.01191 & 0.00943 & -0.00248 \\ 
+  31 & 0.01938 & 0.01502 & -0.00436 \\ 
+  32 & 0.00788 & 0.00884 & 0.00096 \\ 
+  33 & 0.00883 & 0.00255 & -0.00628 \\ 
+  34 & 0.00304 & 0.00237 & -0.00067 \\ 
+  35 & -0.00019 & 0.00155 & 0.00174 \\ 
+  36 & -0.00097 & 0.00084 & 0.00181 \\ 
+  37 & -0.00537 & 0.01427 & 0.01964 \\ 
+  38 & 0.00084 & 0.00223 & 0.00139 \\ 
+  39 & 0.01439 & 0.01179 & -0.00260 \\ 
+  40 & 0.01178 & -0.00009 & -0.01187 \\ 
+  41 & -0.00942 & -0.00464 & 0.00478 \\ 
+  42 & -0.00101 & -0.01293 & -0.01192 \\ 
+  43 & 0.00411 & -0.00230 & -0.00641 \\ 
+  44 & 0.00314 & 0.00481 & 0.00167 \\ 
+  45 & 0.00132 & 0.00283 & 0.00151 \\ 
+  46 & -0.00826 & 0.00218 & 0.01043 \\ 
+  47 & 0.00592 & 0.00091 & -0.00502 \\ 
+  48 & -0.01359 & -0.00244 & 0.01115 \\ 
+  49 & 0.00888 & 0.01090 & 0.00202 \\ 
+  50 & 0.00773 & -0.00310 & -0.01083 \\ 
+  51 & 0.00910 & 0.00683 & -0.00227 \\ 
+  52 & -0.01648 & -0.00280 & 0.01368 \\ 
+  53 & -0.00059 & -0.00765 & -0.00706 \\ 
+  54 & 0.00912 & 0.00468 & -0.00444 \\ 
+  55 & 0.00663 & -0.00278 & -0.00941 \\ 
+  56 & 0.01284 & 0.00399 & -0.00885 \\ 
+  57 & -0.00782 & 0.00197 & 0.00979 \\ 
+  58 & -0.00204 & -0.00150 & 0.00054 \\ 
+  59 & 0.01040 & -0.00570 & -0.01610 \\ 
+  60 & 0.00572 & 0.00990 & 0.00419 \\ 
+   \hline
+\caption{Monthly average returns of the first quartile and fourth quartile portfolio as well as the difference for nonJanuary}\label{tableq1.2nonj}
+\end{longtable}
+\subsection{Q1.3}
+CAMP model is
+\[
+E(R_i)=R_f+\beta(E(R_M)-R_f)
+\]
+Where $R_i$ is the portfolio return; $R_M$ is SP500 return; $R_f$ is risk free rate, which is assumed to be 2$\%$.
+Table{CAMP} presents the results
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ccccc}
+\hline
+&Estimate&Std.Error&t Value & p-value\\
+$\beta$&0.1618&0.1234&1.312&0.194\\
+\hline
+\end{tabular}
+\caption{CAPM model}\label{CAMP}
+\end{table}
+From Table \ref{CAMP} we know the spread between winner and loser can not be explained by CAMP model.
+\subsection{Q1.4}
+Table \ref{tableq1.4} presents results of previous questions in a table similar to table I in Jegadeesh and Titman (2001). 
+\begin{table}[htbp]
+\centering
+\begin{tabular}{cccc}
+\hline
+&2000-2005\\
+Q1 (First Quartile)&0.09\\
+Q4 (Fourth Quartile)&1.01\\
+Q4-Q1&0.01\\
+t statistic&3.09\\
+\hline
+\end{tabular}
+\caption{Monthly average returns}\label{tableq1.4}
+\end{table}
+\subsection{Q1.5}
+Comparing table \ref{tableq1.4} to Table I in Jegadeesh and Titman (2001), we see our winner portfolio has less return than the first 10 percent of the stocks in Jegadeesh and Titman (2001). Our return is $1.01\%$ whereas their return is $1.65\%$. However, our loser has similar return as their loser. Our t statistic is 3.09. 
+
+ \section{Solutions of Problem 2}
+\subsection{Q2.1}
+In the first place, we develop ARMA time series model for the 30-min volume. Figure \ref{plot_volume} shows the plot of time series of the 30-min volume. The red vertical lines separate years. From Figure \ref{plot_volume}, we can see there exist seasonality for the 30-min volume. The volume is high in the middle of the year and is low at the beginning or the end of the year. 
+\begin{figure}
+\includegraphics[scale=0.6]{plot_volume.pdf}
+\caption{Plot of time series of the 30-min volume}\label{plot_volume}
+\end{figure}
+
+In order to build ARMA model, we need to determine the order of the model. Figure \ref{acf_volume} and \ref{pacf_volume} show the autocorrelation coefficients and partial autocorrelation coefficients of 30-min volume data. The autocorrelations are significant for a large number of lags, but perhaps the autocorrelations at lags 2 and above are merely due to the propagation of the autocorrelation at lag 1. This is confirmed by the PACF plot (Figure \ref{pacf_volume}). Note that the PACF plot has a significant spike only at lag 1, meaning that all the higher-order autocorrelations are effectively explained by the lag-1 autocorrelation. Therefore, we choose first order autocorrelation model. We also choose order 1 for moving average model. The ARMA (1,1) model for 30-min volume data is
+\[
+V_t=3302+0.8397V_{t-1}-0.2396\epsilon_{t-1}+\epsilon_t
+\]
+where $\epsilon_t\sim N(0, \sigma^2)$ and $\sigma^2=441178023$.
+
+\begin{figure}
+\includegraphics[scale=0.6]{acf_volume.pdf}
+\caption{ACF of time series of the 30-min volume}\label{acf_volume}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.6]{pacf_volume.pdf}
+\caption{PACF of time series of the 30-min volume}\label{pacf_volume}
+\end{figure}
+
+In addition, we also build ARMA model for daily data. Figure \ref{plot_volume_d} shows the plot of time series for daily volume data. Figure \ref{acf_volume_d} and \ref{pacf_volume_d} show the autocorrelation coefficients and partial autocorrelation coefficients of daily volume data. Similar to 30-min volume data, we build ARMA (1,1), which is
+\[
+V_t=0.9921V_{t-1}-0.6116\epsilon_{t-1}+\epsilon_t
+\]
+where $\epsilon_t\sim N(0, \sigma^2)$ and $\sigma^2=1.123\times 10^{11}$.
+
+
+\begin{figure}
+\includegraphics[scale=0.6]{plot_volume_d.pdf}
+\caption{Plot of time series of the 30-min volume}\label{plot_volume_d}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.6]{acf_volume_d.pdf}
+\caption{ACF of time series of the daily volume}\label{acf_volume_d}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.6]{pacf_volume_d.pdf}
+\caption{PACF of time series of the daily volume}\label{pacf_volume_d}
+\end{figure}
+\includepdf[pages=1,offset=3cm 0.5cm,scale=1.0]{arma.pdf}
+\subsection{Q2.2}
+The volatility measure is computed as
+\[
+\sigma^2_t=0.5[\ln(\frac{H_t}{L_t})]^2-0.368[\ln(\frac{C_t}{O_t})]^2
+\]
+
+Figure \ref{Val_micro} and \ref{Val_macro} present the volatility for both levels. Compare the volatility for micro and macro level, we can see clearly it is bigger for micro level.
+
+\begin{figure}
+\includegraphics[scale=0.6]{Val_micro.pdf}
+\caption{Volatility measure for micro level}\label{Val_micro}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.6]{Val_macro.pdf}
+\caption{Volatility measure for macro level}\label{Val_macro}
+\end{figure}
+\subsection{Q2.3}
+Figure \ref{Val_micro_p} and \ref{Val_macro_p} present the predictions of volatility for both levels.
+\begin{figure}
+\includegraphics[scale=0.6]{Val_micro_p.pdf}
+\caption{Prediction of volatility for micro level}\label{Val_micro_p}
+\end{figure}
+\begin{figure}
+\includegraphics[scale=0.6]{Val_macro_p.pdf}
+\caption{Prediction of volatility for macro level}\label{Val_macro_p}
+\end{figure}
+\subsection{Q2.4}
+In this question, strategies in Note1.pdf are followed.
+\subsubsection{Price information only}
+We use Moving average strategy, that is
+\begin{eqnarray*}
+\text{If}~P_t<\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&\text{Buy the stock}\\
+\text{If}~P_t>\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&\text{Sell the stock}
+\end{eqnarray*}
+Where $P_t$ is close price. We also assume the initial investment is $1\$$. We choose $m=20$. Figure \ref{Q2_4a} presents the value of our investment for 30-min data and Figure \ref{Q2_4a_d} presents the value of our investment for daily data
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4a.pdf}
+\caption{Value of trading strategies only incorporate price information (30-min data)}\label{Q2_4a}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4a_d.pdf}
+\caption{Value of trading strategies only incorporate price information (daily data)}\label{Q2_4a_d}
+\end{figure}
+
+From Figure \ref{Q2_4a} we know if we use Moving average strategy, our final value of investment is $1.205488\$$. That is we have over $20\%$ profit. If we use daily data, the final value of investment is $1.185087\$$.
+\subsubsection{Price and volume information}
+The prediction of volume is computed by exponential smoothing. The smoothing constant is 0.25.The trading strategy is
+\begin{eqnarray*}
+\text{If}~P_t<\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&
+%\text{and}~\sigma^2_{t+1\cdot m}<\hat{\sigma}^2_{t+1\cdot m}&\text{Buy the stock}\\
+\text{and}~\sum_{i=1}^{20} v_{t+1\cdot m}<\sum_{i=1}^{20} \hat{v}_{t+1\cdot m}&\text{Buy the stock}\\
+\text{If}~P_t>\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&
+%\text{or}~\sigma^2_{t+1\cdot m}>\hat{\sigma}^2_{t+1\cdot m}&\text{Sell the stock}\\
+\text{or}~\sum_{i=1}^{20} v_{t+1\cdot m}>\sum_{i=1}^{20} \hat{v}_{t+1\cdot m}&\text{Sell the stock}\\
+\end{eqnarray*}
+If we use daily data, $v_{t+1\cdot m}$ is substituted by $v_{t+1}$ and $\hat{v}_{t+1\cdot m}$ is substituted by $\hat{v}_{t+1}$.
+
+Figure \ref{Q2_4b} presents the value of our investment. From it we can see, our final value is $1.267507\$$. If we use daily data and follow same strategy, our final value is $1.334073\$$ (see Figure \ref{Q2_4b_d})
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4b.pdf}
+\caption{Value of trading strategies only incorporate price and volume information (30-min data)}\label{Q2_4b}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4b_d.pdf}
+\caption{Value of trading strategies incorporate price and volume information (daily data)}\label{Q2_4b_d}
+\end{figure}
+\subsubsection{Price, volume and volatility strategy}
+
+We use the volatility prediction obtained in the previous question. The prediction of volume is computed by exponential smoothing. The smoothing constant is 0.25.The trading strategy is
+\begin{eqnarray*}
+\text{If}~P_t<\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&\\
+\text{and}~\sum_{i=1}^{20} v_{t+1\cdot m}<\sum_{i=1}^{20} \hat{v}_{t+1\cdot m}&\text{Buy the stock}\\
+\text{and}~\sigma^2_{t+1\cdot m}<\hat{\sigma}^2_{t+1\cdot m}&\\
+\text{If}~P_t>\text{Moving average of}~P_{t-1},\ldots,P_{t-m}&\\
+\text{or}~\sum_{i=1}^{20} v_{t+1\cdot m}>\sum_{i=1}^{20} \hat{v}_{t+1\cdot m}&\text{Sell the stock}\\
+\text{or}~\sigma^2_{t+1\cdot m}>\hat{\sigma}^2_{t+1\cdot m}&\\
+\end{eqnarray*}
+If we use daily data, $\sigma^2_{t+1\cdot m}$ is substituted by $\sigma^2_{t+1}$ and $\hat{\sigma}^2_{t+1\cdot m}$ is substituted by $\hat{\sigma}^2_{t+1}$.
+
+Figure \ref{Q2_4c} presents the value of our investment. From it we can see, our final value is $1.233997\$$. If we use daily data and follow same strategy, our final value is $1.299696\$$ (see Figure \ref{Q2_4c_d})
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4c.pdf}
+\caption{Value of trading strategies only incorporate price and volume information (30-min data)}\label{Q2_4c}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.6]{Q2_4c_d.pdf}
+\caption{Value of trading strategies incorporate price and volume information (daily data)}\label{Q2_4c_d}
+\end{figure}
+\subsubsection{Conclusion}
+Table \ref{table} presents the conclusion of all strategies. We can see that using price and volume information and daily data, we have highest value of initial investment.
+\begin{table}[htpb]
+\centering
+\begin{tabular}{ccc}
+\hline
+Strategy&30-min data ($\$$)&daily ($\$$)\\
+\hline
+Price information&1.205488&1.185087\\
+Price and volume information&1.267507&1.334073\\
+Price, volume and volatility&1.233997&1.299696\\
+\hline
+\end{tabular}
+\caption{Conclusions of three strategies}
+\end{table}\label{table}
+\end{document}
+ 
+
+
+
+  
+
+
