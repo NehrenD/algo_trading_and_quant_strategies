@@ -1,7 +1,8 @@
 # Algorithmic Trading and Quantitative Strategies
 ![](./images/work-in-progress.png)
 
-Welcome to the companion repo for the book: [Algorithmic Trading and Quantitative Strategies](https://www.routledge.com/Algorithmic-Trading-and-Quantitative-Strategies/Velu-Hardy-Nehren/p/book/9781498737166) by Raja Velu, Maxence Hardy & Daniel Nehren
+Welcome to the companion repo for the book: [Algorithmic Trading and Quantitative Strategies](https://www.routledge.com/Algorithmic-Trading-and-Quantitative-Strategies/Velu-Hardy-Nehren/p/book/9781498737166)
+
 ![](./images/book-image.jpg)
 
 This repo provides a growing of practical jupyter notebook that will bring to live the topics covered in our book providing practical example and usable code to help the ready extrace maximum value from the materiaal.
