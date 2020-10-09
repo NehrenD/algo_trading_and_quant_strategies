@@ -5,7 +5,7 @@ Welcome to the companion repo for the book: [Algorithmic Trading and Quantitativ
 
 ![](./images/book-image.jpg)
 
-This repo provides a growing collection of Jupyter&reg; notebooks that will bring to live the topics covered in our book. 
+This repo provides a growing collection of Jupyter&reg; notebooks that will bring to life the topics covered in our book. 
 They will providing practical examples and usable code to help the reader extract maximum value from the material.
 
 It also provides guided exercises, again as notebooks, to allow students to deepen their understanding through hands on practice. 
