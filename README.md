@@ -1,7 +1,7 @@
 # Algorithmic Trading and Quantitative Strategies
 ![](./images/work-in-progress.png)
 
-Welcome to the companion repo for the book: [Algorithmic Trading and Quantitative Strategies](https://www.routledge.com/Algorithmic-Trading-and-Quantitative-Strategies/Velu-Hardy-Nehren/p/book/9781498737166)
+Welcome to the companion GitHub site for the book: [Algorithmic Trading and Quantitative Strategies](https://www.routledge.com/Algorithmic-Trading-and-Quantitative-Strategies/Velu-Hardy-Nehren/p/book/9781498737166)
 
 ![](./images/book-image.jpg)
 
