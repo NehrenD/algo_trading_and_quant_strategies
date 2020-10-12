@@ -9,7 +9,6 @@ This repo provides a growing collection of Jupyter&reg; notebooks that will brin
 They will providing practical examples and usable code to help the reader extract maximum value from the material.
 
 It also provides guided exercises, again as notebooks, to allow students to deepen their understanding through hands on practice. 
-solutions to the exercises will be hinted but not provided. Send us a message to receive the solved notebooks.
   
 We are actively working on this repo and it's not ready for usage just now. Please check in a few weeks to see if the repo is ready. 
 We are all full time professionals and unfortunately don't have a lot of time so we apologize for being beind schedule with this.
