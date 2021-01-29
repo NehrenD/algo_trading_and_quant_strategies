@@ -15,7 +15,7 @@ We are all full time professionals and unfortunately don't have a lot of time so
 
 We are working as hard as we can and we'll have it done as soon as possible.
 
-Thank you gor your understanding!
+Thank you for your understanding!
 
 
 Raja, Max, Daniel
